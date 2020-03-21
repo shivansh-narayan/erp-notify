@@ -28,26 +28,49 @@ def login(session):
     soup = BeautifulSoup(post.content,'html.parser')
     html = open('afterlogin.html','wb')
     html.write(post.content)
+    if('Academic' in post.text) :
+        #print('Login Sccessfull')
+        return True
+    else :
+        #print('Login Unsuccessfull')
+        return False
+    
     #print(soup.prettify)
-    print(constants.payload)
+    #print(constants.payload)
 
 def getCompleteDetails(session):
-    data=session.get('https://erp.bitmesra.ac.in/Academic/iitmsPFkXjz+EbtRodaXHXaPVt3dlW3oTGB+3i1YZ7alodHeRzGm9eTr2C53AU6tMBXuOAm5RgR4bqtOVgfGG9isuhw==?enc=3Q2Y1k5BriJsFcxTY7ebQh0hExMANhAKSl1CmxvOF+Y=',data=constants.paylaod,headers=constants.header)
+    data=session.get('https://erp.bitmesra.ac.in/Academic/iitmsPFkXjz+EbtRodaXHXaPVt3dlW3oTGB+3i1YZ7alodHeRzGm9eTr2C53AU6tMBXuOAm5RgR4bqtOVgfGG9isuhw==?enc=3Q2Y1k5BriJsFcxTY7ebQh0hExMANhAKSl1CmxvOF+Y=',data=constants.payload,headers=constants.header)
     soup = BeautifulSoup(data.content,'html.parser')
-    html = open('afterlogin.html','wb')
+    html = open('after_redirecting.html','wb')
     html.write(data.content)
-    print(soup.prettify)
+    #print(soup.prettify)
+    return data
 
-session = requests.Session()
-login_url = 'https://erp.bitmesra.ac.in/iitmsv4eGq0RuNHb0G5WbhLmTKLmTO7YBcJ4RHuXxCNPvuIw=?enc=EGbCGWnlHNJ/WdgJnKH8DA=='
-s = session.get(login_url)
 
-#print(s.content)
-soup = BeautifulSoup(s.content,'html.parser')
-download_captcha(soup)
-update_captcha()
-updateViewState(soup)
-#print(constants.payload)
-login(session)
-#getCompleteDetails(session)
-#print(soup.prettify)
+if __name__ == "__main__":
+
+    count = 0
+    while True :
+        print('iteration '+str(count+1))
+        session = requests.Session()
+        login_url = 'https://erp.bitmesra.ac.in/iitmsv4eGq0RuNHb0G5WbhLmTKLmTO7YBcJ4RHuXxCNPvuIw=?enc=EGbCGWnlHNJ/WdgJnKH8DA=='
+        s = session.get(login_url)
+        #print(s.content)
+        soup = BeautifulSoup(s.content,'html.parser')
+        download_captcha(soup)
+        update_captcha()
+        updateViewState(soup)
+        #print(constants.payload)
+        login_status=login(session)
+        if(login_status==True):
+            print('successfull login')
+            stude_details=getCompleteDetails(session)
+            break
+
+        if(count==15):
+            print('No valid response in 15 tries !!')
+            break
+        
+        #print(soup.prettify)
+        count=count+1
+        

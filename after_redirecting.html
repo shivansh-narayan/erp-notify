@@ -1,0 +1,2375 @@
+
+
+<!DOCTYPE html >
+<html lang="en">
+<head id="ctl00_Head1"><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" /><title>
+	Birla Institute of Technology
+</title><link rel="shortcut icon" href="../IMAGES/favicon.ico" type="image/x-icon" /><link rel="icon" href="../IMAGES/favicon.ico" type="image/x-icon" />
+    
+    <!-- Tell the browser to be responsive to screen width -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../bootstrap/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../dist/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="../dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="../plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="../plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="../bootstrap/css/customcss.css" rel="stylesheet" />
+    <link href="../plugins/feedback/css/feedback.css" rel="stylesheet" />
+
+    
+    <style type="text/css">
+        .content-wrapper
+        {
+            min-height: 800px;
+        }
+
+        #ctl00_ContentPlaceHolder1_CalendarExtender2_today
+        {
+            z-index: 100;
+        }
+
+        #ctl00_ContentPlaceHolder1_ceDateOfAdmission_popupDiv
+        {
+            z-index: 10;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtReportDate
+        {
+            z-index: 0;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtDateOfBirth
+        {
+            z-index: 0;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtSearch_Enrollno_LC
+        {
+            z-index: 0;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtFromDate
+        {
+            z-index: 0;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtToDate
+        {
+            z-index: 0;
+        }
+
+        .bg-light-white
+        {
+            background-color: black;
+            opacity: 0.5;
+        }
+
+        input:hover
+        {
+            -moz-border-bottom-colors: none;
+            -moz-border-image: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            /*border-color: #A0A0A0 #B9B9B9 #B9B9B9;
+            border-right: 1px solid #B9B9B9;
+            border-style: solid;
+            border-width: 1px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;*/
+        }
+
+        /*.submenu {z-index: 9999; /* IE8 FIX for asp:Menu }*/
+
+
+        .visibleDiv, #topLeft, #topRight, #bottomLeft, #bottomRight
+        {
+            position: fixed;
+            width: 280px;
+            border: solid 1px #e1e1b1;
+            vertical-align: middle;
+            background: #ffdab9;
+            text-align: center;
+        }
+
+        #topLeft
+        {
+            top: 10px;
+            left: 10px;
+        }
+
+        #topRight
+        {
+            top: 10px;
+            right: 10px;
+        }
+
+        #bottomLeft
+        {
+            bottom: 10px;
+            left: 10px;
+        }
+
+        #bottomRight
+        {
+            bottom: 0px;
+            right: 0px;
+        }
+
+        #ctl00_ContentPlaceHolder1_rbl1UGPG_1
+        {
+            margin-left: 16px;
+        }
+
+
+        #ContentPlaceHolder1_ceEffectiveDate_popupDiv
+        {
+            z-index: 100;
+        }
+
+        .arrow-right
+        {
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid gray;
+        }
+    </style>
+
+    <style type="text/css">
+        .fieldset
+        {
+            border: 1px solid orange;
+        }
+
+        .ajax__calendar, .ajax__calendar_container
+        {
+            z-index: 100;
+        }
+
+        #ctl00_ContentPlaceHolder1_updScheme
+        {
+            height: 500px;
+        }
+
+        #ctl00_ContentPlaceHolder1_updpnl
+        {
+            height: 500px;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtExamDate
+        {
+            z-index: 0;
+        }
+
+
+        .bg-white
+        {
+            background-color: #fff;
+        }
+
+        .text-white
+        {
+            color: #fff;
+        }
+
+            .text-white:hover
+            {
+                color: #fff;
+            }
+
+        /*.navbar-brand {
+            padding: 0px 15px;
+        }*/
+
+        .level4
+        {
+            top: 0 !important;
+            left: auto !important;
+            right: 80% !important;
+        }
+    </style>
+
+    <style>
+        .scrollable-menu
+        {
+            height: auto;
+            max-height: 350px;
+            overflow-x: hidden;
+        }
+    </style>
+
+    
+    <style type="text/css">
+        .freshwidget-dialog
+        {
+            position: fixed;
+            margin: auto;
+            right: 0;
+            left: initial;
+            transition: .2s ease;
+        }
+
+        div#minimize-div
+        {
+            right: 20px;
+            position: absolute;
+            left: 452px;
+            top: 10px;
+            z-index: 9999;
+            padding: 2px 10px;
+            cursor: pointer;
+        }
+
+        .modal-widget .modal-header .fa
+        {
+            float: right;
+        }
+
+        #minimized-div
+        {
+            padding: 5px 10px;
+            background-color: #dbdbdb;
+            font-size: 14px;
+            position: fixed;
+            bottom: 30px;
+            right: 5%;
+            display: none;
+            cursor: pointer;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            z-index: 9999;
+        }
+
+        .inactive
+        {
+            pointer-events: none;
+            opacity: .5;
+        }
+
+        a.freshwidget-theme
+        {
+            background-color: #4080bf !important;
+            border-color: #4080bf !important;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+        }
+
+        .frame-container::after
+        {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 46px;
+            width: 200px;
+            background-color: #fff;
+            top: 1px;
+            right: 22px;
+        }
+    </style>
+
+    <style>
+        .DelHover:hover
+        {
+            cursor: pointer;
+        }
+
+        /*ul, ol {
+            list-style: block;
+        }*/
+        #accordion1 li.pnl1
+        {
+            margin-bottom: 0px;
+        }
+    </style>
+    
+
+     
+<style>
+   .mynoti {
+        position:relative;
+       
+        }
+        .notificationContainer
+        {
+            background-color:#fff;
+            width:auto;float:right;display:none;
+            z-index:1000;
+            position:absolute;
+            right:10px;
+            top:10%;
+            box-shadow: 0 0 15px #333;
+            border:1px solid #ccc;
+            border-radius:10px;
+            margin-top:18px;
+        }
+
+        .notificationContainer::before{
+             content: '';
+  position: absolute;
+  top: -18px;
+  left:57%;
+  width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 17px 21px 17px;
+border-color: transparent transparent #347fbe transparent;
+        }
+        .notificationContainer .list-group-item
+        {
+            width: 270px;
+        }
+        .skin-blue .main-header .navbar .nav > li > a:hover
+        {
+          background:none;
+        }
+        ul.list-group.live-search
+        {
+            padding-left:0;
+            margin-bottom:0;
+        }
+        .Notification
+        {
+            margin-right:60px;
+        }
+
+        .notify
+
+        {
+            position:absolute;
+            background-color:red;
+            top:5px;
+            right:-20px;
+            width:15px;
+            height:15px;
+            line-height:15px;
+            text-align:center;
+        
+            border-radius:50%;
+               animation: notify;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+
+        }
+        
+@keyframes notify{
+    50%{
+        transform: scale(1.3);
+    }
+}
+
+        .bell_a
+        {
+            cursor:pointer;
+            position:relative;
+            width:15px;
+            max-height:10px;
+            margin-right:15px;
+           
+          
+        }
+        .fa-bell
+        {
+            margin-right:-5px;
+            color:black;
+            resize:both;
+          
+            color:#347fbe;
+            background-color:#fff;
+            padding:7px;
+            border-radius:50%;
+        }
+    .notificationContainer .list-group-item {
+        background-color:aliceblue;
+    }
+    </style>
+         
+
+
+    <!-- jQuery 2.2.0 -->
+    <script src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
+    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/feedback/js/freshwidget.js"></script>
+    <script src="../plugins/fastclick/fastclick.min.js"></script>
+    
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(document).ready(function () {
+                $("#myBtn").click(function () {
+                    $("#myModal").modal();
+                });
+                $("#myBtn2").click(function () {
+                    $("#myModal2").modal();
+                });
+                $("#myBtn3").click(function () {
+                    $("#myModal2").modal();
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(document).ready(function () {
+                $("#myBtn").click(function () {
+                    $("#myModal").modal();
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+    
+
+    <script type="text/javascript">
+        function CheckAlphabet(event, obj) {
+            var k = (window.event) ? event.keyCode : event.which;
+            if (k == 8 || k == 9 || k == 43 || k == 95 || k == 0 || k == 32 || k == 46) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            if (k >= 65 && k <= 90 || k >= 97 && k <= 122) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            else {
+                alert('Please Enter Alphabets Only!');
+                obj.focus();
+            }
+            return false;
+        }
+        function CheckNumeric(event, obj) {
+            var k = (window.event) ? event.keyCode : event.which;
+            //alert(k);
+            if (k == 8 || k == 9 || k == 43 || k == 95 || k == 0) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            if (k > 45 && k < 58) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            else {
+                alert('Please Enter numeric Value');
+                obj.focus();
+            }
+            return false;
+        }
+        function CheckAlphaNumeric(event, obj) {
+            var k = (window.event) ? event.keyCode : event.which;
+            // alert(k);
+            if (k == 8 || k == 9 || k == 16 || k == 0 || k == 32 || k == 45) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            if (k > 45 && k < 58 || k > 95 && k < 106 || k > 64 && k < 91 || k > 96 && k < 123) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            else {
+                alert('Please Enter Alphabets & Numbers Only!');
+                obj.focus();
+            }
+            return false;
+        }
+    </script>
+
+    
+
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            $('.jj #ctl00_mainMenu ul li').css({ 'display': 'none' });
+            $('.live-search-list #ctl00_mainMenu').clone().appendTo('.jj');
+
+            $('.jj #ctl00_mainMenu').find('li').each(function () {
+                $(this).attr('data-search-term', $(this).text().toLowerCase());
+            });
+
+            $('body').on('keyup', '.live-search-box', function () {
+                var searchTerm = $(this).val().toLowerCase();
+                $('.jj').find('li').each(function () {
+
+                    if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+                        $(this).fadeIn();
+                        $('.not-found-txt').css({ 'display': 'block !important' });
+                    } else {
+                        $(this).fadeOut();
+                        $('.not-found-txt').css({ 'display': 'none !important' });
+                    }
+                    return 0;
+                });
+
+                if ($('.live-search-box').val() == '') {
+                    $('.live-search-area').hide();
+                    $(this).removeClass('width210');
+                    $('.cross-btn').fadeOut();
+
+                } else {
+                    $('.live-search-area').show();
+                    $(this).addClass('width210');
+                    $('.cross-btn').fadeIn();
+                }
+            });
+
+            $(".navbar-toggle").click(function () {
+                $(".live-search-box").fadeToggle();
+                $('.cross-btn, .live-search-area').fadeOut();
+            });
+
+            $('body').on('click', '.cross-btn', function () {
+                $('.search-box .live-search-area').hide();
+                $('.live-search-box').val('');
+                $('.live-search-box').removeClass('width210');
+                $('.cross-btn').fadeOut();
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').on('focus', '.live-search-box', function () {
+                //   $(this).addClass('width210');
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+    </script>
+
+    
+    
+   
+
+    <script>
+        $(document).ready(function () {
+            $('.freshwidget-container').css({ 'display': 'block' });
+            $('body').on('click', '#minimize-div', function () {
+                $('.freshwidget-container').hide();
+                $('#minimized-div').show();
+                $('#freshwidget-button').addClass('inactive');
+            });
+            $('body').on('click', '#minimized-div', function () {
+                $('.freshwidget-container').show();
+            });
+            $('body').on('click', '.widget-close', function () {
+                $('#minimized-div').hide();
+                $('#freshwidget-button').removeClass('inactive');
+            });
+
+        });
+    </script>
+
+
+           
+        <script>
+            $(document).ready(function () {
+                $(".fa-bell").click(function () {
+                    $(".notificationContainer").fadeToggle(300);
+                    $("#notification_count").fadeOut("slow");
+                    return false;
+                });
+
+                //Document Click hiding the popup 
+                $(document).click(function () {
+                    $(".notificationContainer").hide();
+                });
+
+                //Popup on click
+                $(".notificationContainer").click(function () {
+                    return false;
+                });
+
+
+            });
+</script>
+    <script>
+        $(document).ready(function () {
+
+            var count = $('.noti-content').find('ul > li').length;
+            //alert(count);
+            $(this).find('.notify').append('<span>' + count + '<span>')
+            //setInterval(function () {
+            //    $(".notify").fadeTo(300, 0.1).fadeTo(500, 1.0);
+            //}, 500);
+
+        });
+
+        $(document).ready(function () {
+            $(".notificationContainer .list-group-item").on({
+                click: function () {
+                    $(this).css("background-color", "#fff");
+                }
+            });
+        });
+    </script>
+
+        
+
+
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+
+    <!-- Help & Support -->
+    <div id="minimized-div" title="maximize">
+        <span>Help &amp; Support</span>
+        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+    </div>
+    <!-- End -->
+
+    <form name="aspnetForm" method="post" action="./iitmsPFkXjz+EbtRodaXHXaPVt3dlW3oTGB+3i1YZ7alodHeRzGm9eTr2C53AU6tMBXuOAm5RgR4bqtOVgfGG9isuhw==?pageno=76" id="aspnetForm">
+<div>
+<input type="hidden" name="ctl00_ToolkitScriptManager1_HiddenField" id="ctl00_ToolkitScriptManager1_HiddenField" value="" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTA5MTU1ODcyNA8WBB4IdXNlcnR5cGUFATIeCGFkbWJhdGNoAhEWAmYPZBYEZg9kFgICBw8VDiIuLi9ib290c3RyYXAvY3NzL2Jvb3RzdHJhcC5taW4uY3NzOC4uL2Jvb3RzdHJhcC9mb250LWF3ZXNvbWUtNC42LjMvY3NzL2ZvbnQtYXdlc29tZS5taW4uY3NzHC4uL2Rpc3QvY3NzL0FkbWluTFRFLm1pbi5jc3MkLi4vZGlzdC9jc3Mvc2tpbnMvX2FsbC1za2lucy5taW4uY3NzLy4uL3BsdWdpbnMvZGF0YXRhYmxlcy9qcXVlcnkuZGF0YVRhYmxlcy5taW4uY3NzLi4uL3BsdWdpbnMvZGF0YXRhYmxlcy9kYXRhVGFibGVzLmJvb3RzdHJhcC5jc3MeLi4vYm9vdHN0cmFwL2Nzcy9jdXN0b21jc3MuY3NzJC4uL3BsdWdpbnMvZmVlZGJhY2svY3NzL2ZlZWRiYWNrLmNzcyUuLi9wbHVnaW5zL2pRdWVyeS9qUXVlcnktMi4yLjAubWluLmpzLi4uL3BsdWdpbnMvZGF0YXRhYmxlcy9qcXVlcnkuZGF0YVRhYmxlcy5taW4uanMxLi4vcGx1Z2lucy9kYXRhdGFibGVzL2RhdGFUYWJsZXMuYm9vdHN0cmFwLm1pbi5qcyAuLi9ib290c3RyYXAvanMvYm9vdHN0cmFwLm1pbi5qcyUuLi9wbHVnaW5zL2ZlZWRiYWNrL2pzL2ZyZXNod2lkZ2V0LmpzJS4uL3BsdWdpbnMvZmFzdGNsaWNrL2Zhc3RjbGljay5taW4uanNkAgEPZBYcAgUPPCsADQEMFCsAAwUHMDowLDA6MRQrAAIWBh4EVGV4dAUIQUNBREVNSUMeBVZhbHVlBQEyHgtOYXZpZ2F0ZVVybGUUKwACBQMwOjAUKwACFgQfAgUPU3R1ZGVudCBSZWxhdGVkHwRlFCsABQUPMDowLDA6MSwwOjIsMDozFCsAAhYEHwIFE1N0dWRlbnQgSW5mb3JtYXRpb24fBAUoYWNhZGVtaWMvU3R1ZGVudEluZm9FbnRyeS5hc3B4P3BhZ2Vubz03NGQUKwACFgQfAgUOT25saW5lIFBheW1lbnQfBAU0YWNhZGVtaWMvT25saW5lUGF5bWVudF9TdHVkZW50TG9naW4uYXNweD9wYWdlbm89MTc5N2QUKwACFgQfAgUTQ291cnNlIFJlZ2lzdHJhdGlvbh8EBSphY2FkZW1pYy9Db3Vyc2VSZWdpc3RyYXRpb24uYXNweD9wYWdlbm89ODRkFCsAAhYEHwIFF1N0dWRlbnQgQ29tcGxldGUgRGV0YWlsHwQFMkFjYWRlbWljL0NvbXByZWhlbnNpdmVfU3R1ZF9SZXBvcnQxLmFzcHg/cGFnZW5vPTc2ZBQrAAIWBh8CBQtFWEFNSU5BVElPTh8DBQEzHwRlFCsAAgUDMDowFCsAAhYEHwIFD1N0dWRlbnQgUmVsYXRlZB8EZRQrAAkFHzA6MCwwOjEsMDoyLDA6MywwOjQsMDo1LDA6NiwwOjcUKwACFgQfAgUmU3R1ZGVudCBCYWNrTG9nIFJlZ2lzdHJhdGlvbiAoT0ZGTElORSkfBAU6QUNBREVNSUMvRVhBTUlOQVRJT04vQmFja2xvZ0V4YW1yZWdFbmRTZW0uYXNweD9wYWdlbm89MjE3NGQUKwACFgQfAgUhTWFrZVVwIEV4YW0gUmVnaXN0cmF0aW9uKE9GRkxJTkUpHwQFOUFDQURFTUlDL0VYQU1JTkFUSU9OL01ha2V1cEV4YW1yZWdFbmRTZW0uYXNweD9wYWdlbm89MjE3NmQUKwACFgQfAgUfU2NydXRpbnkgUmVnaXN0cmF0aW9uIChPRkZMSU5FKR8EBS9hY2FkZW1pYy9SZWRyZXNzYWxSZWdpc3RyYXRpb24uYXNweD9wYWdlbm89MjE3N2QUKwACFgQfAgUnQWRkaXRpb25hbCBTZW1lc3RlciBDb3Vyc2UgUmVnaXN0cmF0aW9uHwQFREFDQURFTUlDL0VYQU1JTkFUSU9OL0FkZGl0aW9uYWxCYWNrbG9nRXhhbXJlZ0VuZFNlbS5hc3B4P3BhZ2Vubz0yMjg1ZBQrAAIWBB8CBSBTaG9ydCBTZW1lc3RlciBFeGFtIFJlZ2lzdHJhdGlvbh8EBThBQ0FERU1JQy9FWEFNSU5BVElPTi9zdW1tZXJyZWdpc3RyYXRpb24uYXNweD9wYWdlbm89MjI5MGQUKwACFgQfAgUqQmFja2xvZyBFeGFtIFJlZ2lzdHJhdGlvbiAoTk9OIENPTExJR1VBVEUpHwQFRkFDQURFTUlDL0VYQU1JTkFUSU9OL05vbkNvbGxpZ3VhdGVCYWNrbG9nUmVnaXN0cmF0aW9uLmFzcHg/cGFnZW5vPTIyOTFkFCsAAhYEHwIFHUJhY2tsb2cgUmVnaXN0cmF0aW9uIChPTkxJTkUpHwQFSEFDQURFTUlDL0VYQU1JTkFUSU9OL0JhY2tsb2dFeGFtcmVnRW5kU2VtdGhyb3VnaFBheW1lbnQuYXNweD9wYWdlbm89MjMyMmQUKwACFgQfAgUfU2NydW50aW55IFJlZ2lzdHJhdGlvbiAoT05MSU5FKR8EBTxBQ0FERU1JQy9TY3J1bml0eVJlZ2lzdHJhdGlvbnRocm91Z2hQYXltZW50LmFzcHg/cGFnZW5vPTIzMzNkFiBmD2QWAmYPFQEIQUNBREVNSUNkAgEPZBYCZg8VAQ9TdHVkZW50IFJlbGF0ZWRkAgIPZBYCZg8VARNTdHVkZW50IEluZm9ybWF0aW9uZAIDD2QWAmYPFQEOT25saW5lIFBheW1lbnRkAgQPZBYCZg8VARNDb3Vyc2UgUmVnaXN0cmF0aW9uZAIFD2QWAmYPFQEXU3R1ZGVudCBDb21wbGV0ZSBEZXRhaWxkAgYPZBYCZg8VAQtFWEFNSU5BVElPTmQCBw9kFgJmDxUBD1N0dWRlbnQgUmVsYXRlZGQCCA9kFgJmDxUBJlN0dWRlbnQgQmFja0xvZyBSZWdpc3RyYXRpb24gKE9GRkxJTkUpZAIJD2QWAmYPFQEhTWFrZVVwIEV4YW0gUmVnaXN0cmF0aW9uKE9GRkxJTkUpZAIKD2QWAmYPFQEfU2NydXRpbnkgUmVnaXN0cmF0aW9uIChPRkZMSU5FKWQCCw9kFgJmDxUBJ0FkZGl0aW9uYWwgU2VtZXN0ZXIgQ291cnNlIFJlZ2lzdHJhdGlvbmQCDA9kFgJmDxUBIFNob3J0IFNlbWVzdGVyIEV4YW0gUmVnaXN0cmF0aW9uZAIND2QWAmYPFQEqQmFja2xvZyBFeGFtIFJlZ2lzdHJhdGlvbiAoTk9OIENPTExJR1VBVEUpZAIOD2QWAmYPFQEdQmFja2xvZyBSZWdpc3RyYXRpb24gKE9OTElORSlkAg8PZBYCZg8VAR9TY3J1bnRpbnkgUmVnaXN0cmF0aW9uIChPTkxJTkUpZAIJDw8WAh4ISW1hZ2VVcmwFFH4vSU1BR0VTL25vcGhvdG8uanBnZGQCCw8PFgIfBQUUfi9JTUFHRVMvbm9waG90by5qcGdkZAINDw8WAh8CBRFTSElWQU5TSCAgTkFSQVlBTmRkAg8PFgIeB1Zpc2libGVoZAIZDw9kFgIeB09uQ2xpY2sFKXJldHVybiBjb25maXJtKCdBcmUgWW91IFN1cmUgVG8gTG9nb3V0PycpZAIhDxYCHwZnFgICAQ8WAh4EaHJlZgVNaHR0cHM6Ly9lcnAuYml0bWVzcmEuYWMuaW4vQWNhZGVtaWMvQ29tcHJlaGVuc2l2ZV9TdHVkX1JlcG9ydDEuYXNweD9wYWdlbm89NzYWAmYPFgIeCWlubmVyaHRtbAUXU3R1ZGVudCBDb21wbGV0ZSBEZXRhaWxkAiMPFgIfBmcWAgIBDxYCHwgFRWh0dHBzOi8vZXJwLmJpdG1lc3JhLmFjLmluL2FjYWRlbWljL0NvdXJzZVJlZ2lzdHJhdGlvbi5hc3B4P3BhZ2Vubz04NBYCZg8WAh8JBRNDb3Vyc2UgUmVnaXN0cmF0aW9uZAIlDxYCHwZnFgICAQ8WAh8IBU9odHRwczovL2VycC5iaXRtZXNyYS5hYy5pbi9hY2FkZW1pYy9PbmxpbmVQYXltZW50X1N0dWRlbnRMb2dpbi5hc3B4P3BhZ2Vubz0xNzk3FgJmDxYCHwkFDk9ubGluZSBQYXltZW50ZAInDxYCHwZnFgICAQ8WAh8IBUNodHRwczovL2VycC5iaXRtZXNyYS5hYy5pbi9hY2FkZW1pYy9TdHVkZW50SW5mb0VudHJ5LmFzcHg/cGFnZW5vPTc0FgJmDxYCHwkFE1N0dWRlbnQgSW5mb3JtYXRpb25kAikPFgIfBmcWAgIBDxYCHwgFU2h0dHBzOi8vZXJwLmJpdG1lc3JhLmFjLmluL0FDQURFTUlDL0VYQU1JTkFUSU9OL3N1bW1lcnJlZ2lzdHJhdGlvbi5hc3B4P3BhZ2Vubz0yMjkwFgJmDxYCHwkFIFNob3J0IFNlbWVzdGVyIEV4YW0gUmVnaXN0cmF0aW9uZAIrDxYCHwZnFgICAQ8WAh8IBTZodHRwczovL2VycC5iaXRtZXNyYS5hYy5pbi9RdWlja0xpbmtzLmFzcHg/cGFnZW5vPTIyNzgWAmYPFgIfCQULUXVpY2sgTGlua3NkAjkPDxYCHwIFYzxTVFJPTkc+PHVsPjxsaT5B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DxYCHwIFEzEzLzEyLzIwMTkgMDA6MDA6MDBkZAIGDw8WAh8CBQkxMjQ1MDAuMDBkZAIHDw8WAh8CBQRQYWlkZGQCAw8PFgIfBmhkZAI3DxQrAAIPFgQfCmcfCwL/////D2RkZAI5DxQrAAIPFgQfCmcfCwL/////D2RkZAI7DxYCHwllZBgRBSZjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGd2UGFyZW50R3JpZA88KwAMAwYVAQxUUl9SRVNVTFRfTk8HFCsAAhQrAAECnKYCFCsAAQKTtAMIAgFkBTljdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGd2UGFyZW50R3JpZCRjdGwwMiRndkNoaWxkR3JpZDEPPCsADAEIZmQFJ2N0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkZ3ZQYXJlbnRHcmlkMQ88KwAMAwYVAQRJRE5PBxQrAAMUKwABArUPFCsAAQK1DxQrAAECtQ8IAgFkBSJjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGx2UmVmdW5kD2dkBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WBgUKY3RsMDAkSW1nMQU2Y3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRndlBhcmVudEdyaWQxJGN0bDAyJGJ0blByaW50BTZjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGd2UGFyZW50R3JpZDEkY3RsMDMkYnRuUHJpbnQFNmN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkZ3ZQYXJlbnRHcmlkMSRjdGwwNCRidG5QcmludAU5Y3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRndlBhcmVudEdyaWRGZWVzJGN0bDAyJGJ0blByaW50BTljdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGd2UGFyZW50R3JpZEZlZXMkY3RsMDMkYnRuUHJpbnQFOGN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkZ3ZQYXJlbnRHcmlkJGN0bDAzJGd2Q2hpbGRHcmlkDzwrAAwBCAIBZAUnY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRsdkNlcnRpZmljYXRlD2dkBTljdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGd2UGFyZW50R3JpZDEkY3RsMDIkZ3ZDaGlsZEdyaWQPPCsADAEIAgFkBSZjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGx2QXR0ZW5kYW5jZQ8UKwAOZGRkZGRkZBQrAANkZGQCA2RkZGYC/////w9kBSJjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGx2UmVtYXJrD2dkBSpjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGd2UGFyZW50R3JpZEZlZXMPPCsADAMGFQEESUROTwcUKwACFCsAAQK1DxQrAAECtQ8IAgFkBTljdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJGd2UGFyZW50R3JpZCRjdGwwMyRndkNoaWxkR3JpZDEPPCsADAEIZmQFOGN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkZ3ZQYXJlbnRHcmlkJGN0bDAyJGd2Q2hpbGRHcmlkDzwrAAwBCAIBZAUkY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRndlRlc3RNYXJrDzwrAAwBCAIBZAUnY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRncmRFeGFNYXJEZXRsDzwrAAwBCAIBZAU5Y3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRndlBhcmVudEdyaWQxJGN0bDA0JGd2Q2hpbGRHcmlkDzwrAAwBCAIBZAU5Y3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRndlBhcmVudEdyaWQxJGN0bDAzJGd2Q2hpbGRHcmlkDzwrAAwBCAIBZNre5PkPq6+tDJkfjV0winZXP7H2" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=b1Y0qzb4P5-RtYbUBovJXK-crJHeMuzKtZTXJaljaAhNoyy9L5D6iCuV4trFPrIDhHrzCxQYaM2mInSmWK6PGCPB5Cw1&amp;t=637103544297649313" type="text/javascript"></script>
+
+<script> javascript:function AppValueSet() {var c= 'Tab'; return c;} </script>
+<script src="/ScriptResource.axd?d=P-6qRUfeZlyvOjo6bvjnb0ZmzTwP_8DvsOC-1-qsBSzet5M7vkQnHgcn1OJsuRmwRCopNybTGFq5aLHsa1A_FvlZNHkbfNRvNahsENkC4EbTkDm--0ik_me-IrG201PWmj6gCA2&amp;t=5f65bdf4" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=actQ506nHN3V4GkQE7BKs8QJoaoJvwfdVgMxxCg6BrE7BrWoLoU-vYQcdQdS_tTUFu1th40Qj6uWwAz8_r3W03Rm1TaXlNn_yXPGTVAD65cfkotBzcXy42j5zo-hCgXCBGY1bvfAmtFXUUgWk-ZRR6zUn5I1&amp;t=ffffffffecf19baa" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=V4jh_Yj9DmLJ-bMbDZxO3hh_3saQlQwYDyXEriaNtlwF9gvmJmInoFZF-1--u1cmivY0CtsP7ICdQ_rlOpSJtY2OAeoOelxl8XicfoxhHMjk-RBpb6oWGTBJrmlDc7iHBXtzc89vSzYWynuiae2xGVltJOWalQz8qp8OE-FS1_uVQV8r0&amp;t=ffffffffecf19baa" type="text/javascript"></script>
+<script src="/Academic/Comprehensive_Stud_Report1.aspx?_TSM_HiddenField_=ctl00_ToolkitScriptManager1_HiddenField&amp;_TSM_CombinedScripts_=%3b%3bAjaxControlToolkit%2c+Version%3d3.0.20229.20843%2c+Culture%3dneutral%2c+PublicKeyToken%3d28f01b0e84b6d53e%3aen-US%3a3b7d1b28-161f-426a-ab77-b345f2c428f5%3ae2e86ef9%3a1df13a87%3a3858419b%3a9ea3f0e2%3a96741c43%3ac4c00916%3ac7c04611%3acd120801%3a38ec41c0" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="82C7C594" />
+</div>
+        <div class="wrapper">
+            <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'aspnetForm', ['tctl00$updPopUp_Link',''], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand">
+                                
+                                <input type="image" name="ctl00$Img1" id="ctl00_Img1" src="../IMAGES/bitmesralogo.png" style="border-width:0px;height: 37px; width: 37px;" />
+                                
+                            </a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <div class="live-search-list">
+                                <a href="#ctl00_mainMenu_SkipLink"><img alt="Skip Navigation Links" src="/WebResource.axd?d=PGu3gXOrXeRlHkd7uYmbGmxDtOC0kdpS2TjNL8k0Gd1OuJO0y5q23NAV3pY3PvAdu_T5TkUlE0NBViFfXZJEjinI8Ak1&amp;t=637103544297649313" width="0" height="0" style="border-width:0px;" /></a><div id="ctl00_mainMenu">
+	<ul class="level1 nav navbar-nav">
+		<li><a class="popout level1" href="#" onclick="__doPostBack(&#39;ctl00$mainMenu&#39;,&#39;2&#39;)">
+                                        ACADEMIC
+                                    </a><ul class="level2 dropdown-menu">
+			<li><a class="popout level2" href="#" onclick="__doPostBack(&#39;ctl00$mainMenu&#39;,&#39;2\\Student Related&#39;)">
+                                        Student Related
+                                    </a><ul class="level3 dropdown-menu">
+				<li><a class="level3" href="StudentInfoEntry.aspx?pageno=74">
+                                        Student Information
+                                    </a></li><li><a class="level3" href="OnlinePayment_StudentLogin.aspx?pageno=1797">
+                                        Online Payment
+                                    </a></li><li><a class="level3" href="CourseRegistration.aspx?pageno=84">
+                                        Course Registration
+                                    </a></li><li><a class="level3" href="Comprehensive_Stud_Report1.aspx?pageno=76">
+                                        Student Complete Detail
+                                    </a></li>
+			</ul></li>
+		</ul></li><li><a class="popout level1" href="#" onclick="__doPostBack(&#39;ctl00$mainMenu&#39;,&#39;3&#39;)">
+                                        EXAMINATION
+                                    </a><ul class="level2 dropdown-menu">
+			<li><a class="popout level2" href="#" onclick="__doPostBack(&#39;ctl00$mainMenu&#39;,&#39;3\\Student Related&#39;)">
+                                        Student Related
+                                    </a><ul class="level3 dropdown-menu">
+				<li><a class="level3" href="EXAMINATION/BacklogExamregEndSem.aspx?pageno=2174">
+                                        Student BackLog Registration (OFFLINE)
+                                    </a></li><li><a class="level3" href="EXAMINATION/MakeupExamregEndSem.aspx?pageno=2176">
+                                        MakeUp Exam Registration(OFFLINE)
+                                    </a></li><li><a class="level3" href="RedressalRegistration.aspx?pageno=2177">
+                                        Scrutiny Registration (OFFLINE)
+                                    </a></li><li><a class="level3" href="EXAMINATION/AdditionalBacklogExamregEndSem.aspx?pageno=2285">
+                                        Additional Semester Course Registration
+                                    </a></li><li><a class="level3" href="EXAMINATION/summerregistration.aspx?pageno=2290">
+                                        Short Semester Exam Registration
+                                    </a></li><li><a class="level3" href="EXAMINATION/NonColliguateBacklogRegistration.aspx?pageno=2291">
+                                        Backlog Exam Registration (NON COLLIGUATE)
+                                    </a></li><li><a class="level3" href="EXAMINATION/BacklogExamregEndSemthroughPayment.aspx?pageno=2322">
+                                        Backlog Registration (ONLINE)
+                                    </a></li><li><a class="level3" href="ScrunityRegistrationthroughPayment.aspx?pageno=2333">
+                                        Scruntiny Registration (ONLINE)
+                                    </a></li>
+			</ul></li>
+		</ul></li>
+	</ul>
+</div><a id="ctl00_mainMenu_SkipLink"></a>
+                            </div>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav">
+                                 <!-- START Notification Box -->
+                                       
+                                           <li id="ctl00_liNotification" title="Notification" data-toggle="modal" data-target="#ModelNotification" style="margin: 3px 10px;  ">
+                                               <a href="#" class="bell_a"><i class="fa fa-bell"></i><span class="notify"></span></a>
+                                               <div class="noti-content">
+
+                                                   <div class="noti-top-arrow"></div>
+                                                   <ul id="notiContent"></ul>
+                                               </div>
+                                           </li> 
+                                            
+                                  <!-- END Notification Box -->
+
+                                <!-- Search Box -->
+                                <li>
+                                    <div class="search-box">
+                                        <div class="cross-btn">
+                                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        </div>
+                                        <input type="search" class="live-search-box" placeholder="search here" />
+                                        <div class="live-search-area scrollbar">
+                                            <div class="jj"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- X -->
+
+                                <li class="dropdown user user-menu">
+                                    <!-- Menu Toggle Button -->
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <img id="ctl00_imgDash" class="user-image" alt="User Image" src="../IMAGES/nophoto.jpg" style="border-width:0px;" />
+                                        <span class="hidden-xs"><i class="fa fa-chevron-circle-down"></i></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <!-- The user image in the menu -->
+                                        <li class="user-header">
+                                            <img id="ctl00_imgPhoto" class="img-circle" alt="User Image" src="../IMAGES/nophoto.jpg" style="border-width:0px;" />
+                                            <p>
+                                                <span>Welcome
+                                                <span id="ctl00_lblLink">SHIVANSH  NARAYAN</span></span>
+                                            </p>
+                                            
+                                        </li>
+                                        <!-- Menu Body -->
+                                        <li class="user-body">
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <div class="row no-gutters">
+                                                        <div class="col-sm-6 col-xs-6">
+                                                            <a href="../changePassword.aspx" class="btn btn-default btn-sm form-control" style="border-radius: 0; margin-left: -5px; color: #808080"><span style="vertical-align: sub"><b>Change Password</b></span> </a>
+                                                        </div>
+                                                        <div class="col-sm-6 col-xs-6">
+                                                            <input type="submit" name="ctl00$btnuser" value="User Profile" id="ctl00_btnuser" class="btn btn-default btn-sm form-control" style="font-weight:bold;border-radius: 0;" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- Menu Footer-->
+                                        <li class="user-footer">
+                                            <div class="text-center">
+                                                <a id="ctl00_btndashboard" class="btn btn-primary btn-flat" href="javascript:__doPostBack(&#39;ctl00$btndashboard&#39;,&#39;&#39;)">DashBoard</a>
+                                                <a id="ctl00_btnHome" class="btn btn-success btn-flat" href="javascript:__doPostBack(&#39;ctl00$btnHome&#39;,&#39;&#39;)">Home</a>
+                                                <a onclick="return confirm(&#39;Are You Sure To Logout?&#39;);" id="ctl00_btnLogout" class="btn btn-warning btn-flat" href="javascript:__doPostBack(&#39;ctl00$btnLogout&#39;,&#39;&#39;)">Log Out</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-custom-menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+
+            <!-- Fix Menu -->
+            <div class="fix-menu" style="margin-top: -60px">
+                <ul class="list-group">
+                    <li class="list-group-item" title="Dashboard">
+                        <a id="ctl00_btnDash" href="javascript:__doPostBack(&#39;ctl00$btnDash&#39;,&#39;&#39;)"> <i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
+                    <li class="list-group-item" title="Recent Links" data-toggle="modal" data-target="#myModalz"><i class="fa fa-link"></i></li>
+                    <li class="list-group-item" title="Favorite Links" id="Fav_Model"><i class="fa fa-star"></i></li>
+                </ul>
+            </div>
+            <!-- X -->
+
+            <!-- Favorites -->
+            
+            <div class="modal right fade" id="myModal_1" role="dialog">
+                <div id="ctl00_updPopUp_Link">
+	
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="pull-right flex">
+
+                                        
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="pull-left">
+                                        <h4 class="modal-title">Favorites</h4>
+                                    </div>
+                                </div>
+                                <div id="ctl00_divFavorite" class="modal-body with-fav-sticker-links">
+                                </div>
+                                <div class="modal-footer">
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    
+</div>
+            </div>
+            <!-- END -->
+
+            
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Feeback Us <i class="fa fa-comment-o"></i></h4>
+                        </div>
+                        <div class="modal-body modal-warning">
+                            <div class="form-group col-md-12">
+                                <textarea name="ctl00$TextBox1" rows="2" cols="20" id="ctl00_TextBox1" class="form-control" placeholder="Enter any comment here....">
+</textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+            
+            <div class="modal right fade" id="myModalz" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Quick Links</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li id="ctl00_li1" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/Academic/Comprehensive_Stud_Report1.aspx?pageno=76" id="ctl00_ql1"><i id="ctl00_iql1">Student Complete Detail</i></a></span></li>
+                                <li id="ctl00_li2" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/academic/CourseRegistration.aspx?pageno=84" id="ctl00_ql2"><i id="ctl00_iql2">Course Registration</i></a></span></li>
+                                <li id="ctl00_li3" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/academic/OnlinePayment_StudentLogin.aspx?pageno=1797" id="ctl00_ql3"><i id="ctl00_iql3">Online Payment</i></a></span></li>
+                                <li id="ctl00_li4" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/academic/StudentInfoEntry.aspx?pageno=74" id="ctl00_ql4"><i id="ctl00_iql4">Student Information</i></a></span></li>
+                                <li id="ctl00_li5" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/ACADEMIC/EXAMINATION/summerregistration.aspx?pageno=2290" id="ctl00_ql5"><i id="ctl00_iql5">Short Semester Exam Registration</i></a></span></li>
+                                <li id="ctl00_li6" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/QuickLinks.aspx?pageno=2278" id="ctl00_ql6"><i id="ctl00_iql6">Quick Links</i></a></span></li>
+                                
+                                
+                                
+                                
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            
+                            <button type="button" class="btn btn-danger close-btn" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <!-- Main content -->
+     
+             
+                <div class="mynoti">
+                    <div class="notificationContainer">
+                        <div class="noti-content" >
+                            <h5 class="notificationContainer-title" style="text-align: center; background-color: #347fbe; color: #fff; 
+                               border-top-left-radius: 10px; border-top-right-radius: 10px; margin: 0; padding: 10px;">NOTIFICATION DETAILS</h5>
+                            <div id="ctl00_divNotification" class="modal-body with-fav-sticker-links" style="padding: 0px 5px 5px 5px;overflow-y:scroll; height:350px;">
+                            <ul class='list-group live-search'></div>
+                        </div>
+                    </div>
+                </div>
+             
+
+            <div class="content-wrapper">
+                <div class="container">
+                    
+                    <div class="breadcrumb-menu">
+                        <ul class="breadcrumb" style="padding-right: 0">
+                            <li>
+                                <a id="ctl00_LinkButton1" href="javascript:__doPostBack(&#39;ctl00$LinkButton1&#39;,&#39;&#39;)"><i class="fa fa-home text-primary" style="font-size:15px"></i></a></li>
+                        </ul>
+                        <span id="ctl00_lblpath"><STRONG><ul><li>ACADEMIC</li><li>Student Related</li><li>Student Complete Detail</li></ul></STRONG></span>
+                    </div>
+                    
+                    <section class="content" style="margin-bottom: 50px; padding: 0PX;">
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-12 col-sm-12">
+                                <a id="ctl00_lnkFake" href="javascript:__doPostBack(&#39;ctl00$lnkFake&#39;,&#39;&#39;)"></a>
+                                
+                                <div id="ctl00_pnlPopup" class="modalPopup" style="display: none">
+	
+                                    <div class="modal fade in" style="display: block;">
+                                        <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="blinking" style="color: #ff0000; font-weight: bold;">Session Expiring!</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        <span style="color: #3c8dbc; font-weight: bold">Your Session will expire in&nbsp;<span id="seconds" style="color: #FF0000; font-weight: bold"></span>&nbsp;seconds.<br />
+                                                            Do you want to continue?</span>
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" name="ctl00$btnYes" value="Yes" id="ctl00_btnYes" class="yes btn-primary btn" />
+                                                    <input type="submit" name="ctl00$btnNo" value="No" id="ctl00_btnNo" class="no btn-warning btn" data-dismiss="modal" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+</div>
+                                
+  
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+
+            $(".display").dataTable({
+                "bJQueryUI": true,
+                "sPaginationType": "full_numbers"
+            });
+
+        });
+    </script>
+
+
+    <style>
+        .myTable tbody tr:nth-child(1) {
+            background-color: #00569d;
+            color: #fff;
+        }
+    </style>
+
+    <style>
+        .panel.panel-primary {
+        margin-bottom:5px
+        }
+        .panel.panel-primary, .panel.panel-primary .panel-heading {
+        border-radius:0;
+        }
+
+        .panel-title > a:before {
+    float: right !important;
+    font-family: FontAwesome;
+    content:"\f068";
+    padding-right: 5px;
+}
+.panel-title > a.collapsed:before {
+    float: right !important;
+    content:"\f067";
+   
+}
+        .panel-title > a:hover, .panel-title > a:focus, .panel-title > a:active {
+        color:#fff
+        }
+
+        .padd0 {
+        padding:0;
+        }
+        .table {
+        margin-bottom:0;
+        }
+        </style>
+
+
+    
+   
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">COMPREHENSIVE STUDENT INFORMATION</h3>
+                </div>
+                <div class="box-body">
+                    <span id="ctl00_ContentPlaceHolder1_lblMsg"></span>
+                    
+                  
+                    <div class="container-fluid">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse1">Student Information</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div id="divStudentInfo" style="display: block;">
+                                        <div class="row">
+                                             <div class="col-md-4 form-group">
+                                               <a href="javaScript(void)">
+                                                    <img id="ctl00_ContentPlaceHolder1_imgPhoto" src="../showimage.aspx?id=1973&amp;type=student" style="height:120px;width:128px;border-width:0px;" /></a>
+                                              
+                                             </div>
+
+                                            <div class="col-sm-4 form-group">
+                                            <b>Student Name :</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblName" style="font-weight:bold;">SHIVANSH  NARAYAN</span></a> 
+                                                </div>
+                                            <div class="col-sm-4 form-group">
+                                           <b>Local Address:</b>
+                                                    <a href="javaScript(void)">
+                                                        <span id="ctl00_ContentPlaceHolder1_lblLAdd" style="font-weight:bold;"></span></a>
+                                                </div>
+
+                                               <div class="col-sm-4 form-group">
+                                                <b>Date of Birth :</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblDOB" style="font-weight:bold;">01/03/1998</span></a>
+                                                   </div>
+                                             <div class="col-sm-4 form-group">
+                                         <b>Father's Name :</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblMName" style="font-weight:bold;">KAMALAKSHA NARAYAN</span></a> 
+                                                  </div>
+                                             <div class="col-sm-4 form-group">
+                                       <b>Roll No. :</b><a href="javaScript(void)">
+                                         <span id="ctl00_ContentPlaceHolder1_lblRegNo" style="font-weight:bold;">BE/10600/17</span></a> 
+                                                </div> 
+                                              <div class="col-sm-4 form-group">
+                                                <b>Caste:</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblCaste" style="font-weight:bold;">RAJPOOT</span></a> 
+                                                  </div>
+                                              <div class="col-sm-4 form-group">
+                                             <b>Landline No :</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblLLNo" style="font-weight:bold;"></span></a>
+                                               </div>
+                                               <div class="col-sm-4 form-group">
+                                             <b>Category:</b><a  href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblCategory" style="font-weight:bold;">GEN</span></a>
+                                               </div>
+                                             <div class="col-sm-4 form-group">
+                                            <b>Enrollment No. :</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblEnrollNo" style="font-weight:bold;"></span></a>
+                                            </div>
+                                               <div class="col-sm-4 form-group">
+                                                  <b>Mobile No:</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblMobNo" style="font-weight:bold;"></span></a> 
+                                                   </div>
+                                               <div class="col-sm-4 form-group">
+                                              <b>Nationality:</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblNationality" style="font-weight:bold;">Indian</span></a>
+                                               </div>
+                                            </div>
+                                     
+                                       
+
+                                        <div class="row">
+                                             <div class="col-sm-4 form-group">
+                                          <b>Branch :</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblBranch" style="font-weight:bold;">INFORMATION TECHNOLOGY</span></a>
+                                                </div>
+                                              <div class="col-sm-4 form-group">
+                                             <b>Permanent Address :</b>
+                                                    <a href="javaScript(void)">
+                                                        <span id="ctl00_ContentPlaceHolder1_lblPAdd" style="font-weight:bold;">S-20/58 KASTURBA MARG MALL ROAD CANTONMENT</span></a>
+                                                  </div>
+                                              <div class="col-sm-4 form-group">
+                                              <b>Religion:</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblReligion" style="font-weight:bold;">Hindu</span></a>
+                                                </div>
+                                            </div>
+                                          <div class="row">
+                                             <div class="col-sm-4 form-group">
+                                              
+                                               <b>Semester :</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblSemester" style="font-weight:bold;">VI</span></a>
+                                            </div>
+                                             <div class="col-sm-4 form-group">
+                                               <b>City:</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblPCity" style="font-weight:bold;"></span></a> 
+                                                 </div>
+                                             <div class="col-sm-4 form-group">
+                                               <b>Physical Handicapped:</b><a href="javaScript(void)">
+                                                    <span id="ctl00_ContentPlaceHolder1_lblHandicap" style="font-weight:bold;"></span></a>
+                                        </div>
+                                            </div>
+                                      
+                                       
+                                  </div>
+                                </div>
+                            </div>
+                            </div>
+                       
+                    
+                    
+                    
+                    
+                    <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse2">Semester Registration Status</a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div id="div1" style="display: block;"> 
+                                        <div>
+	<table class="table table-hover table-bordered" cellspacing="0" border="0" id="ctl00_ContentPlaceHolder1_gvParentGrid1" style="border-width:1px;border-style:Solid;width:100%;border-collapse:collapse;">
+		<tr class="bg-light-blue" style="color:White;font-weight:bold;">
+			<th align="center" scope="col">VIEW DETAILS</th><th align="center" scope="col">PRINT</th><th align="center" scope="col">SESSION</th><th align="center" scope="col">COURSE STATUS</th><th scope="col">&nbsp;</th>
+		</tr><tr>
+			<td align="center" style="width:25px;">
+                                                        <div id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl02_divcR">
+                                                            <a href="JavaScript:divexpandcollapse('div43104');"> 
+                                                                <img alt="VIEW" id='CLOSE3104' border="0" title="VIEW DETAILS" />
+                                                        </div>
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl02$hdfSession" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl02_hdfSession" value="31" />
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl02$hdfSemester" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl02_hdfSemester" value="4" />
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl02$hdfIDNo" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl02_hdfIDNo" value="1973" />
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl02$hdfRegStatus" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl02_hdfRegStatus" value="0" />
+                                                    </td><td align="center" style="width:25px;">
+                                                        <input type="image" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl02$btnPrint" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl02_btnPrint" title="PRINT" src="../images/print.gif" style="border-width:0px;" />
+                                                        </a>
+                                                    </td><td align="center">SPRING 2019</td><td align="center">REGULAR</td><td>
+                                                        <tr>
+                                                            <td colspan="100%">
+                                                                <div id='div43104' style="display: none; position: relative; left: 30px; overflow: auto">
+                                                                    <div>
+				<table class="table table-hover table-bordered table-striped" cellspacing="0" border="0" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl02_gvChildGrid" style="border-color:#F5511E;border-style:Double;width:95%;border-collapse:collapse;">
+					<tr class="bg-light-blue" style="color:White;font-weight:bold;">
+						<th align="center" scope="col">SR.NO.</th><th align="left" scope="col">COURSE CODE</th><th align="left" scope="col">COURSE NAME</th><th align="center" scope="col">SUBJECT TYPE</th>
+					</tr><tr>
+						<td align="center">
+                                                                                    1
+                                                                                </td><td>BT3021</td><td>BIOLOGICAL SCIENCE</td><td align="center">Lecture</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    2
+                                                                                </td><td>IT4021</td><td>DATABASE SYSTEM CONCEPTS</td><td align="center">Lecture</td>
+					</tr><tr>
+						<td align="center">
+                                                                                    3
+                                                                                </td><td>IT4023</td><td>OPERATING SYSTEM CONCEPTS</td><td align="center">Lecture</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    4
+                                                                                </td><td>IT4025</td><td>THEORY OF COMPUTATIONS</td><td align="center">Lecture</td>
+					</tr><tr>
+						<td align="center">
+                                                                                    5
+                                                                                </td><td>IT4027</td><td>SCIENTIFIC COMPUTING</td><td align="center">Lecture</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    6
+                                                                                </td><td>IT4028</td><td>SCIENTIFIC COMPUTING LAB</td><td align="center">Sessional</td>
+					</tr><tr>
+						<td align="center">
+                                                                                    7
+                                                                                </td><td>IT4024</td><td>OPERATING SYSTEM LAB</td><td align="center">Sessional</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    8
+                                                                                </td><td>IT4022</td><td>DATABASE SYSTEM LAB</td><td align="center">Sessional</td>
+					</tr><tr>
+						<td align="center">
+                                                                                    9
+                                                                                </td><td>GA4006</td><td>PT &amp; GAMES</td><td align="center">Sessional</td>
+					</tr><tr style="color:White;font-weight:bold;">
+						<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </td>
+		</tr><tr>
+			<td align="center" style="width:25px;">
+                                                        <div id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl03_divcR">
+                                                            <a href="JavaScript:divexpandcollapse('div43305');"> 
+                                                                <img alt="VIEW" id='CLOSE3305' border="0" title="VIEW DETAILS" />
+                                                        </div>
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl03$hdfSession" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl03_hdfSession" value="33" />
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl03$hdfSemester" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl03_hdfSemester" value="5" />
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl03$hdfIDNo" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl03_hdfIDNo" value="1973" />
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl03$hdfRegStatus" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl03_hdfRegStatus" value="0" />
+                                                    </td><td align="center" style="width:25px;">
+                                                        <input type="image" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl03$btnPrint" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl03_btnPrint" title="PRINT" src="../images/print.gif" style="border-width:0px;" />
+                                                        </a>
+                                                    </td><td align="center">MONSOON 2019</td><td align="center">REGULAR</td><td>
+                                                        <tr>
+                                                            <td colspan="100%">
+                                                                <div id='div43305' style="display: none; position: relative; left: 30px; overflow: auto">
+                                                                    <div>
+				<table class="table table-hover table-bordered table-striped" cellspacing="0" border="0" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl03_gvChildGrid" style="border-color:#F5511E;border-style:Double;width:95%;border-collapse:collapse;">
+					<tr class="bg-light-blue" style="color:White;font-weight:bold;">
+						<th align="center" scope="col">SR.NO.</th><th align="left" scope="col">COURSE CODE</th><th align="left" scope="col">COURSE NAME</th><th align="center" scope="col">SUBJECT TYPE</th>
+					</tr><tr>
+						<td align="center">
+                                                                                    1
+                                                                                </td><td>IT5021</td><td>DATA COMMUNICATIONS</td><td align="center">Lecture</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    2
+                                                                                </td><td>IT5023</td><td>SOFTWARE ENGINEERING PRINCIPLE</td><td align="center">Lecture</td>
+					</tr><tr>
+						<td align="center">
+                                                                                    3
+                                                                                </td><td>IT5025</td><td>PRINCIPLES OF SOFT COMPUTING</td><td align="center">Lecture</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    4
+                                                                                </td><td>IT5027</td><td>DESIGN OF COMPUTER ALGORITHMS</td><td align="center">Lecture</td>
+					</tr><tr>
+						<td align="center">
+                                                                                    5
+                                                                                </td><td>MSH1131</td><td>PRINCIPLES  OF  MANAGEMENT</td><td align="center">Lecture</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    6
+                                                                                </td><td>IT5028</td><td>COMPUTER ALGORITHMS LAB</td><td align="center">Sessional</td>
+					</tr><tr>
+						<td align="center">
+                                                                                    7
+                                                                                </td><td>IT5026</td><td>PRINCIPLES OF SOFT COMP LAB</td><td align="center">Sessional</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    8
+                                                                                </td><td>IT5024</td><td>SOFTWARE ENGG PRINCIPLE LAB</td><td align="center">Sessional</td>
+					</tr><tr style="color:White;font-weight:bold;">
+						<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </td>
+		</tr><tr>
+			<td align="center" style="width:25px;">
+                                                        <div id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl04_divcR">
+                                                            <a href="JavaScript:divexpandcollapse('div43606');"> 
+                                                                <img alt="VIEW" id='CLOSE3606' border="0" title="VIEW DETAILS" />
+                                                        </div>
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl04$hdfSession" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl04_hdfSession" value="36" />
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl04$hdfSemester" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl04_hdfSemester" value="6" />
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl04$hdfIDNo" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl04_hdfIDNo" value="1973" />
+                                                        <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl04$hdfRegStatus" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl04_hdfRegStatus" value="0" />
+                                                    </td><td align="center" style="width:25px;">
+                                                        <input type="image" name="ctl00$ContentPlaceHolder1$gvParentGrid1$ctl04$btnPrint" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl04_btnPrint" title="PRINT" src="../images/print.gif" style="border-width:0px;" />
+                                                        </a>
+                                                    </td><td align="center">SPRING 2020</td><td align="center">REGULAR</td><td>
+                                                        <tr>
+                                                            <td colspan="100%">
+                                                                <div id='div43606' style="display: none; position: relative; left: 30px; overflow: auto">
+                                                                    <div>
+				<table class="table table-hover table-bordered table-striped" cellspacing="0" border="0" id="ctl00_ContentPlaceHolder1_gvParentGrid1_ctl04_gvChildGrid" style="border-color:#F5511E;border-style:Double;width:95%;border-collapse:collapse;">
+					<tr class="bg-light-blue" style="color:White;font-weight:bold;">
+						<th align="center" scope="col">SR.NO.</th><th align="left" scope="col">COURSE CODE</th><th align="left" scope="col">COURSE NAME</th><th align="center" scope="col">SUBJECT TYPE</th>
+					</tr><tr>
+						<td align="center">
+                                                                                    1
+                                                                                </td><td>IT6021</td><td>COMMUNICATION THEORY</td><td align="center">Lecture</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    2
+                                                                                </td><td>IT6023</td><td>COMPUTER NETWORK AND SECURITY</td><td align="center">Lecture</td>
+					</tr><tr>
+						<td align="center">
+                                                                                    3
+                                                                                </td><td>IT6025</td><td>INFORMATION &amp; CODING THEORY</td><td align="center">Lecture</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    4
+                                                                                </td><td>IT6027</td><td>OPTIMIZATION TECHNIQUES</td><td align="center">Lecture</td>
+					</tr><tr>
+						<td align="center">
+                                                                                    5
+                                                                                </td><td>MSH1121</td><td>MARKETING MANAGEMENT</td><td align="center">Lecture</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    6
+                                                                                </td><td>IT6026</td><td>INFORMATION &amp; CODING THEORY LAB</td><td align="center">Sessional</td>
+					</tr><tr>
+						<td align="center">
+                                                                                    7
+                                                                                </td><td>IT6024</td><td>NETWORK SECURITY LAB</td><td align="center">Sessional</td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                                    8
+                                                                                </td><td>IT6022</td><td>COMMUNICATION SYSTEM LAB</td><td align="center">Sessional</td>
+					</tr><tr style="color:White;font-weight:bold;">
+						<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </td>
+		</tr>
+	</table>
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse3">Attendance Details</a>
+                                    <div class="pull-right" style="color:white;">Attendence was showing according to the Course Registration Date&nbsp;&nbsp;</div>
+                                </div>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div id="divAttendance" style="display: block">
+                                        <div id="div3" style="display: block;" class="table table-responsive">
+                                           
+                                    
+                                            <div>
+                                                <table class="table table-hover table-bordered">
+                                                    <thead>
+                                                            <tr class="bg-light-blue">
+                                                            <th>Course Name
+                                                            </th>
+                                                            <th>Faculty Name
+                                                            </th>
+                                                            <th>Total Classes
+                                                            </th>
+                                                            <th>Present
+                                                            </th>
+                                                            <th>Absent
+                                                            </th>
+                                                            <th>Percentage
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        
+                                            <tr>
+                                                <td>
+                                                    IT6021--COMMUNICATION THEORY
+                                                </td>
+                                                <td>
+                                                    Janardan Sahay
+                                                </td>
+                                                <td>
+                                                    22
+                                                </td>
+                                                <td>
+                                                    15
+                                                </td>
+                                                <td>
+                                                    7
+                                                </td>
+                                                <td>
+                                                    68
+                                                </td>
+                                            </tr>
+                                        
+                                            <tr>
+                                                <td>
+                                                    IT6022--COMMUNICATION SYSTEM LAB
+                                                </td>
+                                                <td>
+                                                    Sukanta Kr. Dash
+                                                </td>
+                                                <td>
+                                                    6
+                                                </td>
+                                                <td>
+                                                    5
+                                                </td>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    83
+                                                </td>
+                                            </tr>
+                                        
+                                            <tr>
+                                                <td>
+                                                    IT6025--INFORMATION & CODING THEORY
+                                                </td>
+                                                <td>
+                                                    RADHAMADHAB DALAI
+                                                </td>
+                                                <td>
+                                                    4
+                                                </td>
+                                                <td>
+                                                    4
+                                                </td>
+                                                <td>
+                                                    0
+                                                </td>
+                                                <td>
+                                                    100
+                                                </td>
+                                            </tr>
+                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse4">Examination Marks</a>
+                                </h4>
+                            </div>
+                            <div id="collapse4" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div id="divTestMark" style="display: block" class="table table-responsive myTable">
+                                        <div id="div2" style="display: block;">
+                            <div>
+	<table cellspacing="0" rules="all" class="table table-bordered" border="1" id="ctl00_ContentPlaceHolder1_grdExaMarDetl" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">CCODE</th><th scope="col">COURSENAME</th><th scope="col">INTERNAL</th><th scope="col">MIDSEM</th><th scope="col">PROGRESSIVE EVALUATION (PE)</th><th scope="col">ENDSEMESTER EVALUATION (ES)</th><th scope="col">VIVA</th>
+		</tr><tr>
+			<td>IT6021</td><td>COMMUNICATION THEORY</td><td>-</td><td>16.00</td><td>-</td><td>-</td><td>-</td>
+		</tr><tr>
+			<td>IT6023</td><td>COMPUTER NETWORK AND SECURITY</td><td>-</td><td>16.00</td><td>-</td><td>-</td><td>-</td>
+		</tr><tr>
+			<td>IT6025</td><td>INFORMATION &amp; CODING THEORY</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr><tr>
+			<td>IT6027</td><td>OPTIMIZATION TECHNIQUES</td><td>-</td><td>15.00</td><td>-</td><td>-</td><td>-</td>
+		</tr><tr>
+			<td>MSH1121</td><td>MARKETING MANAGEMENT</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+		</tr>
+	</table>
+</div>
+                                        </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>   
+                    <div class="col-md-12 table table-responsive" >
+                        <fieldset>
+                            <div>
+
+</div>
+                        </fieldset>
+                    </div>
+                    <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse6">Result Details</a>
+                                </h4>
+                            </div>
+                                      <div id="collapse6" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                    <div class="col-md-12 table table-responsive">
+                            <div id="divResult" style="display: block;">
+                                <div>
+	<table class="table table-hover table-bordered" cellspacing="0" border="0" id="ctl00_ContentPlaceHolder1_gvParentGrid" style="border-width:1px;border-style:Solid;width:100%;border-collapse:collapse;">
+		<tr class="bg-light-blue" style="color:White;font-weight:bold;">
+			<th align="center" scope="col">VIEW DETAILS</th><th align="center" scope="col">SEMESTER</th><th align="center" scope="col">SESSION</th><th align="center" scope="col">TOTAL CREDITS</th><th align="center" scope="col">EARNED CREDITS</th><th align="center" scope="col">SGPA</th><th align="center" scope="col">EGP</th><th scope="col">&nbsp;</th>
+		</tr><tr>
+			<td align="center" style="width:25px;">
+                                                <div id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_divc1">
+                                                    <a href="JavaScript:divexpandcollapse('div37660');">
+                                                        <img alt="VIEW" id='CLOSE37660' border="0" title="VIEW DETAILS" />
+                                                </div>
+                                                
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl02$hdfcollegeid" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_hdfcollegeid" value="1" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl02$hdfSession" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_hdfSession" value="31" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl02$hdfdegreeno" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_hdfdegreeno" value="1" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl02$hdfbranchno" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_hdfbranchno" value="6" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl02$hdfSemester" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_hdfSemester" value="4" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl02$hdfIDNo" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_hdfIDNo" value="1973" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl02$hdfScheme" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_hdfScheme" value="6" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl02$hdfstudType" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_hdfstudType" />
+                                            </td><td align="center">IV</td><td align="center">SP 2019</td><td align="center">23.00</td><td align="center">23.00</td><td align="center">8.130</td><td align="center">187.000</td><td>
+                                                <tr>
+                                                    <td colspan="100%">
+                                                        <div id='div37660' style="display: none; position: relative; left: 30px; overflow: auto">
+                                                            <div>
+				<table class="table table-hover table-bordered" cellspacing="0" border="0" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid" style="border-color:Green;border-style:Double;width:95%;border-collapse:collapse;">
+					<tr class="bg-light-blue" style="color:White;font-weight:bold;">
+						<th align="center" scope="col">SR.NO.</th><th align="left" scope="col">COURSE CODE</th><th align="center" scope="col">COURSE </th><th align="center" scope="col">GRADE</th><th align="center" scope="col">EARNED CREDITS</th><th align="center" scope="col">CREDIT POINTS</th>
+					</tr><tr>
+						<td align="center">
+                                                                            1
+                                                                        </td><td>BT3021</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl02_lblcoursename" HeaderStyle-HorizontalAlign="Left">BIOLOGICAL SCIENCE</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl02_lblgrade" HeaderStyle-HorizontalAlign="Left">A</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl02_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">3.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl02_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">24.00</span>
+                                                                        </td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                            2
+                                                                        </td><td>GA4006</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl03_lblcoursename" HeaderStyle-HorizontalAlign="Left">PT & GAMES</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl03_lblgrade" HeaderStyle-HorizontalAlign="Left">A</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl03_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">1.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl03_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">8.00</span>
+                                                                        </td>
+					</tr><tr>
+						<td align="center">
+                                                                            3
+                                                                        </td><td>IT4021</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl04_lblcoursename" HeaderStyle-HorizontalAlign="Left">DATABASE SYSTEM CONCEPTS</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl04_lblgrade" HeaderStyle-HorizontalAlign="Left">A+</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl04_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">4.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl04_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">36.00</span>
+                                                                        </td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                            4
+                                                                        </td><td>IT4022</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl05_lblcoursename" HeaderStyle-HorizontalAlign="Left">DATABASE SYSTEM LAB</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl05_lblgrade" HeaderStyle-HorizontalAlign="Left">A</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl05_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">2.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl05_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">16.00</span>
+                                                                        </td>
+					</tr><tr>
+						<td align="center">
+                                                                            5
+                                                                        </td><td>IT4023</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl06_lblcoursename" HeaderStyle-HorizontalAlign="Left">OPERATING SYSTEM CONCEPTS</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl06_lblgrade" HeaderStyle-HorizontalAlign="Left">B+</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl06_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">3.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl06_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">21.00</span>
+                                                                        </td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                            6
+                                                                        </td><td>IT4024</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl07_lblcoursename" HeaderStyle-HorizontalAlign="Left">OPERATING SYSTEM LAB</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl07_lblgrade" HeaderStyle-HorizontalAlign="Left">A</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl07_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">2.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl07_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">16.00</span>
+                                                                        </td>
+					</tr><tr>
+						<td align="center">
+                                                                            7
+                                                                        </td><td>IT4025</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl08_lblcoursename" HeaderStyle-HorizontalAlign="Left">THEORY OF COMPUTATIONS</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl08_lblgrade" HeaderStyle-HorizontalAlign="Left">A</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl08_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">3.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl08_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">24.00</span>
+                                                                        </td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                            8
+                                                                        </td><td>IT4027</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl09_lblcoursename" HeaderStyle-HorizontalAlign="Left">SCIENTIFIC COMPUTING</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl09_lblgrade" HeaderStyle-HorizontalAlign="Left">A</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl09_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">3.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl09_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">24.00</span>
+                                                                        </td>
+					</tr><tr>
+						<td align="center">
+                                                                            9
+                                                                        </td><td>IT4028</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl10_lblcoursename" HeaderStyle-HorizontalAlign="Left">SCIENTIFIC COMPUTING LAB</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl10_lblgrade" HeaderStyle-HorizontalAlign="Left">A+</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl10_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">2.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid_ctl10_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">18.00</span>
+                                                                        </td>
+					</tr><tr style="color:White;font-weight:bold;">
+						<td>&nbsp;</td><td>&nbsp;</td><td align="center">&nbsp;</td><td align="center">&nbsp;</td><td>&nbsp;</td><td align="center">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+                                                        </div>
+                                                        <div id='div137660' style="display: none; position: relative; left: 30px; overflow: auto">
+                                                            <div>
+				<table class="table table-hover table-bordered" cellspacing="0" border="0" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl02_gvChildGrid1" style="border-color:Green;border-style:Double;width:95%;border-collapse:collapse;">
+					<tr style="color:Red;background-color:LightBlue;font-weight:bold;">
+						<td>No data Found</td>
+					</tr>
+				</table>
+			</div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </td>
+		</tr><tr>
+			<td align="center" style="width:25px;">
+                                                <div id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_divc1">
+                                                    <a href="JavaScript:divexpandcollapse('div55827');">
+                                                        <img alt="VIEW" id='CLOSE55827' border="0" title="VIEW DETAILS" />
+                                                </div>
+                                                
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl03$hdfcollegeid" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_hdfcollegeid" value="1" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl03$hdfSession" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_hdfSession" value="33" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl03$hdfdegreeno" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_hdfdegreeno" value="1" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl03$hdfbranchno" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_hdfbranchno" value="6" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl03$hdfSemester" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_hdfSemester" value="5" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl03$hdfIDNo" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_hdfIDNo" value="1973" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl03$hdfScheme" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_hdfScheme" value="6" />
+                                                <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGrid$ctl03$hdfstudType" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_hdfstudType" />
+                                            </td><td align="center">V</td><td align="center">MO 2019</td><td align="center">23.00</td><td align="center">23.00</td><td align="center">7.650</td><td align="center">176.000</td><td>
+                                                <tr>
+                                                    <td colspan="100%">
+                                                        <div id='div55827' style="display: none; position: relative; left: 30px; overflow: auto">
+                                                            <div>
+				<table class="table table-hover table-bordered" cellspacing="0" border="0" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid" style="border-color:Green;border-style:Double;width:95%;border-collapse:collapse;">
+					<tr class="bg-light-blue" style="color:White;font-weight:bold;">
+						<th align="center" scope="col">SR.NO.</th><th align="left" scope="col">COURSE CODE</th><th align="center" scope="col">COURSE </th><th align="center" scope="col">GRADE</th><th align="center" scope="col">EARNED CREDITS</th><th align="center" scope="col">CREDIT POINTS</th>
+					</tr><tr>
+						<td align="center">
+                                                                            1
+                                                                        </td><td>IT5021</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl02_lblcoursename" HeaderStyle-HorizontalAlign="Left">DATA COMMUNICATIONS</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl02_lblgrade" HeaderStyle-HorizontalAlign="Left">A</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl02_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">3.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl02_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">24.00</span>
+                                                                        </td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                            2
+                                                                        </td><td>IT5023</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl03_lblcoursename" HeaderStyle-HorizontalAlign="Left">SOFTWARE ENGINEERING PRINCIPLE</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl03_lblgrade" HeaderStyle-HorizontalAlign="Left">B</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl03_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">4.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl03_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">24.00</span>
+                                                                        </td>
+					</tr><tr>
+						<td align="center">
+                                                                            3
+                                                                        </td><td>IT5024</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl04_lblcoursename" HeaderStyle-HorizontalAlign="Left">SOFTWARE ENGG PRINCIPLE LAB</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl04_lblgrade" HeaderStyle-HorizontalAlign="Left">B</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl04_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">2.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl04_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">12.00</span>
+                                                                        </td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                            4
+                                                                        </td><td>IT5025</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl05_lblcoursename" HeaderStyle-HorizontalAlign="Left">PRINCIPLES OF SOFT COMPUTING</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl05_lblgrade" HeaderStyle-HorizontalAlign="Left">B+</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl05_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">3.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl05_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">21.00</span>
+                                                                        </td>
+					</tr><tr>
+						<td align="center">
+                                                                            5
+                                                                        </td><td>IT5026</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl06_lblcoursename" HeaderStyle-HorizontalAlign="Left">PRINCIPLES OF SOFT COMP LAB</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl06_lblgrade" HeaderStyle-HorizontalAlign="Left">EX</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl06_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">2.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl06_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">20.00</span>
+                                                                        </td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                            6
+                                                                        </td><td>IT5027</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl07_lblcoursename" HeaderStyle-HorizontalAlign="Left">DESIGN OF COMPUTER ALGORITHMS</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl07_lblgrade" HeaderStyle-HorizontalAlign="Left">A+</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl07_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">4.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl07_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">36.00</span>
+                                                                        </td>
+					</tr><tr>
+						<td align="center">
+                                                                            7
+                                                                        </td><td>IT5028</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl08_lblcoursename" HeaderStyle-HorizontalAlign="Left">COMPUTER ALGORITHMS LAB</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl08_lblgrade" HeaderStyle-HorizontalAlign="Left">A+</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl08_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">2.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl08_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">18.00</span>
+                                                                        </td>
+					</tr><tr style="background-color:White;">
+						<td align="center">
+                                                                            8
+                                                                        </td><td>MSH1131</td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl09_lblcoursename" HeaderStyle-HorizontalAlign="Left">PRINCIPLES  OF  MANAGEMENT</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl09_lblgrade" HeaderStyle-HorizontalAlign="Left">B+</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl09_lblearnedcredits" HeaderStyle-HorizontalAlign="Left">3.00</span>
+                                                                        </td><td align="center">
+                                                                            <span id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid_ctl09_lblcreditpoints" HeaderStyle-HorizontalAlign="Left">21.00</span>
+                                                                        </td>
+					</tr><tr style="color:White;font-weight:bold;">
+						<td>&nbsp;</td><td>&nbsp;</td><td align="center">&nbsp;</td><td align="center">&nbsp;</td><td>&nbsp;</td><td align="center">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+                                                        </div>
+                                                        <div id='div155827' style="display: none; position: relative; left: 30px; overflow: auto">
+                                                            <div>
+				<table class="table table-hover table-bordered" cellspacing="0" border="0" id="ctl00_ContentPlaceHolder1_gvParentGrid_ctl03_gvChildGrid1" style="border-color:Green;border-style:Double;width:95%;border-collapse:collapse;">
+					<tr style="color:Red;background-color:LightBlue;font-weight:bold;">
+						<td>No data Found</td>
+					</tr>
+				</table>
+			</div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </td>
+		</tr>
+	</table>
+</div>
+                            </div>
+                    </div>
+                                    </div>       
+                              </div>
+                              </div>
+                        
+                    <div class="col-md-12">
+                        <fieldset style="display: none">
+                            <legend>Cetificates Issued
+                                <div class="box-tools pull-right">
+                                    <img id="img4" style="cursor: pointer;" src="../IMAGES/collapse_blue.jpg" alt=""
+                                        onclick="javascript:toggleExpansion(this,'divCertificate')" />
+                                </div>
+                            </legend>
+                            <div id="divCertificate" style="display: none;">
+                                
+                                        <div align="center" class="info">
+                                            No Certificates Issued
+                                        </div>
+                                    
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    
+                       
+                          <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#divFeePaid">Fees Details</a> lvFees
+                                </h4>
+                            </div>
+                            <div id="divFeePaid" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div id="div5" style="display: block;"> 
+                                        <div>
+	<table class="table table-hover table-bordered" cellspacing="0" border="0" id="ctl00_ContentPlaceHolder1_gvParentGridFees" style="border-width:1px;border-style:Solid;width:100%;border-collapse:collapse;">
+		<tr class="bg-light-blue" style="color:White;font-weight:bold;">
+			<th align="center" scope="col">PRINT</th><th align="center" scope="col">SESSION</th><th align="center" scope="col">Semester</th><th align="center" scope="col">Receipt Type</th><th align="center" scope="col">Rec. No</th><th align="center" scope="col">Rec. Date</th><th align="center" scope="col">Amount paid</th><th align="center" scope="col">Remarks</th>
+		</tr><tr>
+			<td align="center" style="width:25px;">
+                                                        <input type="image" name="ctl00$ContentPlaceHolder1$gvParentGridFees$ctl02$btnPrint" id="ctl00_ContentPlaceHolder1_gvParentGridFees_ctl02_btnPrint" title="PRINT" src="../images/print.gif" style="border-width:0px;" />
+                                                        </a>
+                                                         <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGridFees$ctl02$hdfIDNo" id="ctl00_ContentPlaceHolder1_gvParentGridFees_ctl02_hdfIDNo" value="1973" />
+                                                         <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGridFees$ctl02$hdfDcr_no" id="ctl00_ContentPlaceHolder1_gvParentGridFees_ctl02_hdfDcr_no" value="1084" />
+                                                    </td><td align="center">MONSOON 2019</td><td align="center">V</td><td align="center">SEMESTER FEE</td><td align="center">C/TF/2019-20/691</td><td align="center">22/06/2019 00:00:00</td><td align="center">124500.00</td><td align="center">GENERAL</td>
+		</tr><tr>
+			<td align="center" style="width:25px;">
+                                                        <input type="image" name="ctl00$ContentPlaceHolder1$gvParentGridFees$ctl03$btnPrint" id="ctl00_ContentPlaceHolder1_gvParentGridFees_ctl03_btnPrint" title="PRINT" src="../images/print.gif" style="border-width:0px;" />
+                                                        </a>
+                                                         <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGridFees$ctl03$hdfIDNo" id="ctl00_ContentPlaceHolder1_gvParentGridFees_ctl03_hdfIDNo" value="1973" />
+                                                         <input type="hidden" name="ctl00$ContentPlaceHolder1$gvParentGridFees$ctl03$hdfDcr_no" id="ctl00_ContentPlaceHolder1_gvParentGridFees_ctl03_hdfDcr_no" value="10511" />
+                                                    </td><td align="center">SPRING 2020</td><td align="center">VI</td><td align="center">SEMESTER FEE</td><td align="center">C/TF/2019-20/4417</td><td align="center">13/12/2019 00:00:00</td><td align="center">124500.00</td><td align="center">Paid</td>
+		</tr>
+	</table>
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                    <div class="col-md-12">
+                       
+                             <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse5">Student Remark</a>
+                                </h4>
+                            </div>
+                            <div id="collapse5" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                              <div id="divRemark" class="table table-responsive">
+                                
+                                        <div align="center" class="info">
+                                            No Remarks Given
+                                        </div>
+                                    
+                            </div>
+                      </div>
+                    </div>
+                                  </div>
+                        </div>
+
+                    <div class="col-md-12">
+                        <fieldset style="display: none">
+                            <legend>Student Refund
+                                <img id="img8" style="cursor: pointer;" src="../IMAGES/collapse_blue.jpg" alt=""
+                                    onclick="javascript:toggleExpansion(this,'divRefund')" />
+                            </legend>
+                            <div id="divRefund" style="display: none;">
+                                
+                            </div>
+                        </fieldset>
+                    </div>
+                             </div>
+               
+            </div>
+      </div>
+       </div>
+
+    
+    <script type="text/javascript" language="javascript">
+
+        /* To collapse and expand page sections */
+        function toggleExpansion(imageCtl, divId) {
+            if (document.getElementById(divId).style.display == "block") {
+                document.getElementById(divId).style.display = "none";
+                imageCtl.src = "../IMAGES/expand_blue.jpg";
+            }
+            else if (document.getElementById(divId).style.display == "none") {
+                document.getElementById(divId).style.display = "block";
+                imageCtl.src = "../IMAGES/collapse_blue.jpg";
+            }
+        }
+
+
+
+        function toggleExpansion1(imageCtl, divId) {
+            if (document.getElementById(divId).style.display == "block") {
+                document.getElementById(divId).style.display = "none";
+                imageCtl.src = "../IMAGES/expand_blue.jpg";
+            }
+            else if (document.getElementById(divId).style.display == "none") {
+                document.getElementById(divId).style.display = "block";
+                imageCtl.src = "../IMAGES/collapse_blue.jpg";
+            }
+        }
+
+    </script>
+    <script language="javascript" type="text/javascript">
+        function divexpandcollapse(divname) {
+            var div = document.getElementById(divname);
+            var img = document.getElementById('img' + divname);
+            if (div.style.display == "none") {
+                div.style.display = "inline";
+                img.src = "../IMAGES/minus.png";
+            }
+            else {
+                div.style.display = "none";
+                img.src = "../IMAGES/plus.gif";
+            }
+        }
+    </script>
+
+    <div id="ctl00_ContentPlaceHolder1_divMsg"></div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <footer class="main-footer navbar-fixed-bottom ">
+                <strong>Designed and Developed By:<a href="http://www.iitms.co.in" target="_blank"> MasterSoft </a>Copyright &copy; 2016.</strong> All rights reserved.
+            </footer>
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+                //alert("1");
+                $("#ctl00_mainMenu ul .has-popup").on("mouseenter", function () {
+                    // alert("a");
+                    var $Ww = $(window).width();
+                    var $mItem = $(this).find("ul");
+                    var $mFirstL = $(this).closest(".dropdown-menu");
+                    var mw = $mItem.width() + $mFirstL.offset() + $mFirstL.width();
+                    //var $Mw = $mItem.width() + $mFirstL().offset().left + $mFirstL.width();
+                    var mrLeft = 0 - ($mItem.width() + $mFirstL.width());
+                    //alert("1");
+                    if ($Ww < mw) {
+                        $mItem.css("margin-left", mrLeft);
+                    }
+                });
+            });
+        </script>
+
+ 
+       
+
+
+        <script type="text/javascript">
+            function SessionExpireAlert(timeout) {
+                var seconds = timeout / 1000;
+                document.getElementsByName("secondsIdle").innerHTML = seconds;
+                document.getElementsByName("seconds").innerHTML = seconds;
+                setInterval(function () {
+                    seconds--;
+                    document.getElementById("seconds").innerHTML = seconds;
+                    document.getElementById("secondsIdle").innerHTML = seconds;
+                }, 1000);
+                setTimeout(function () {
+                    //Show Popup before 20 seconds of timeout.
+                    $find("mpeTimeout").show();
+                }, timeout - 60 * 1000);
+                setTimeout(function () {
+                    window.location = "/PresentationLayer/default.aspx";
+                }, timeout);
+            };
+            function ResetSession() {
+                window.location = window.location.href;
+                //alert('Log out');
+            }
+        </script>
+
+        <script type="text/javascript">
+            function showglobclk() {
+                obj = document.getElementById('globalSubNav');
+                obj.style.display = (obj.style.display == 'block') ? 'none' : 'block';
+                return false;
+            }
+
+            function showglobnav() {
+                obj = document.getElementById('globalSubNav');
+                obj.style.display = 'block';
+                return false;
+            }
+
+            function hideglobnav() {
+                obj = document.getElementById('globalSubNav');
+                obj.style.display = 'none';
+                return false;
+            }
+        </script>
+
+        <script type="text/javascript">
+            function cancelClickErr() {
+            }
+        </script>
+
+        <script type="text/javascript">
+            function DisableBackButton() {
+                window.history.forward()
+            }
+            DisableBackButton();
+            window.onload = DisableBackButton;
+            window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+            window.onunload = function () { void (0) }
+        </script>
+
+        <script type="text/javascript">
+            jQuery(function ($) {
+                $(window).load(function () {
+                    var script = document.createElement('script')
+                    script.setAttribute("type", "text/javascript")
+                    //script.setAttribute("src", "bootstrap/js/custom.js")
+                    document.getElementsByTagName("body")[0].appendChild(script);
+                    $('nav ul.navbar-nav li').each(function () {
+                        $(this).find('.popout').append('<span class="caret"></span>');
+                        $(this).find('ul .popout span').addClass("arrow-right");
+                        //  $(".sf-with-ul .caret").each(function () {
+                        var $arrow = $(this).find('.popout span:nth-of-type(n+2)');
+                        // $($arrow).removeClass("caret");
+                        //$($arrow).addClass("caret-second");
+                        $($arrow).hide();
+                        //});
+                    });
+                });
+            });
+
+        </script>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+SessionExpireAlert(3600000);//]]>
+</script>
+<script type='text/javascript'>new Sys.WebForms.Menu({ element: 'ctl00_mainMenu', disappearAfter: 500, orientation: 'horizontal', tabIndex: 0, disabled: false });</script>
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","CancelControlID":"ctl00_btnNo","OkControlID":"ctl00_btnYes","OnOkScript":"ResetSession()","PopupControlID":"ctl00_pnlPopup","dynamicServicePath":"/Academic/Comprehensive_Stud_Report1.aspx","id":"mpeTimeout"}, null, null, $get("ctl00_lnkFake"));
+});
+//]]>
+</script>
+</form>
+
+
+
+
+    
+  
+
+    <script type="text/javascript">
+        $(document).on('shown.bs.dropdown', function () {
+            OffsetDropdown()
+            $(window).on('resize.bs.dropdown', function () {
+                OffsetDropdown()
+            })
+        })
+        $(document).on('hide.bs.dropdown', function () {
+            $(window).off('resize.bs.dropdown')
+        })
+        var OffsetDropdown = function () {
+            var dropdown = $('.open>.dropdown-menu')
+            if (dropdown.length == 0)
+                return
+            var rightOffset = dropdown.offset().left + dropdown.width()
+            var browserWidth = $('body').innerWidth()
+            var neededLeftOffset = dropdown.position().left - (rightOffset - browserWidth)
+            if (neededLeftOffset < 0) {
+                dropdown.css({ left: neededLeftOffset - 3 })
+            } else {
+                dropdown.css({ left: 0 })
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function myJS(myVar) {
+            window.alert(myVar);
+        }
+    </script>
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a:not(.popout).dynamic').parent('li').css({ 'display': 'flex' });
+            $('a:not(.popout).dynamic').parent('li').append('<i class="fa fa-star"></i>');
+
+            var UA_No = '1195';
+                     //-------------------------------------------------------------------
+                     $.ajax({
+                         url: '/WEB_API/Add_Fav_Links.asmx/Get_Active_FavLink',
+                        data: { UA_NO: UA_No },
+                        type: 'POST',
+                        dataType: 'text',
+                        success: function (r) {
+                            var json = "{" + r.split("{")[1].split("}")[0] + "}";
+                            var obj = jQuery.parseJSON(json);
+                            var i, j;
+                            for (i = 0; i < obj.data.split(",").length; i++) {
+
+                                $('li.dynamic').find('.fa').each(function (z, objz) {
+                                    var link = $(this).prev().attr('href');
+
+                                    var LinkNo = link.match("pageno=(.*)&");
+                                    if (LinkNo == null) {
+                                        LinkNo = link.substring(link.lastIndexOf("=") + 1, link.length);
+                                    }
+                                    else {
+                                        LinkNo = LinkNo[1];
+                                    }
+
+                                    if (obj.data.split(",")[i] == LinkNo) {
+                                        $(this).addClass('active');
+                                    }
+                                });
+                            }
+                        },
+                        error: function (e) {
+                            alert('Something went Wrong !!!');
+                        }
+                    });
+                     //----------------------------------------------------------------------
+
+                     $('li.dynamic').find('.fa').click(function () {
+                         debugger;
+                         $(this).toggleClass('active');
+                         var link = $(this).prev().attr('href');
+
+                         var LinkNo = link.match("pageno=(.*)&");
+                         if (LinkNo == null) {
+                             LinkNo = link.substring(link.lastIndexOf("=") + 1, link.length);
+                         }
+                         else {
+                             LinkNo = LinkNo[1];
+                         }
+                         var col = $(this).css("color");
+                         var color = '';
+                         //Find Color of Active Element
+                         hexc(col);
+                         //Web Api Call
+                         //if (color == '#ba68c8') {
+                         if (color == '#ff4d4d') {
+                             $.ajax({
+                                 url: '/WEB_API/Add_Fav_Links.asmx/Add_FavLink',
+                                data: { UA_NO: UA_No, LINK_NO: LinkNo, OTYPE: 1 },
+                                type: 'POST',
+                                dataType: 'text',
+                                success: function (r) {
+                                    var json = "{" + r.split("{")[1].split("}")[0] + "}";
+                                    var obj = jQuery.parseJSON(json);
+                                },
+                                error: function (err) {
+                                    alert('Something went Wrong !!!');
+                                }
+                            });
+                        }
+                        else if (color == '#a6a6a6') {
+                            $.ajax({
+                                url: '/WEB_API/Add_Fav_Links.asmx/Add_FavLink',
+                                data: { UA_NO: UA_No, LINK_NO: LinkNo, OTYPE: 2 },
+                                type: 'POST',
+                                dataType: 'text',
+                                success: function (r) {
+                                    var json = "{" + r.split("{")[1].split("}")[0] + "}";
+                                    var obj = jQuery.parseJSON(json);
+                                },
+                                error: function (err) {
+                                    alert('Something went Wrong !!!');
+                                }
+                            });
+                            }
+                        // RGB to HEX Converter
+                        function hexc(colorval) {
+                            var parts = colorval.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                            delete (parts[0]);
+                            for (var i = 1; i <= 3; ++i) {
+                                parts[i] = parseInt(parts[i]).toString(16);
+                                if (parts[i].length == 1) parts[i] = '0' + parts[i];
+                            }
+                            color = '#' + parts.join('');
+                        }
+                        //end
+                    });
+                 });
+    </script>
+
+    
+    
+
+    <script>
+        $(document).ready(function () {
+            $("#Fav_Model").click(function () {
+
+                var UA_No = '1195';
+
+                         $.ajax({
+                             url: '/WEB_API/Add_Fav_Links.asmx/Get_FavLink',
+                            data: { UA_NO: UA_No },
+                            type: 'POST',
+                            dataType: 'text',
+                            success: function (r) {
+                                if ($("#DynamicDiv").length != 0) {
+                                    $("#DynamicDiv").remove();
+                                }
+
+                                var json = "{" + r.split("{")[1].split("}")[0] + "}";
+                                var obj = jQuery.parseJSON(json);
+                                var x = "<div id='DynamicDiv'>" + obj.data + "</div>";
+                                x = x.replace(/&lt;/g, "<");
+                                x = x.replace(/&gt;/g, ">");
+                                x = x.replace(/&amp;/g, "&")
+
+                                if (x == "<div id='DynamicDiv'><ul class='list-group live-search'></div>") {
+                                    $('#ctl00_divFavorite').html('<span><center><h3 style="font-family: ptsans, sans-serif;margin-top: 50%;color:#3498DB"><i class="fa fa-star-half-o" aria-hidden="true"></i><br>No Favorite Links Added !!</h1></center></span>');
+                                }
+                                else {
+                                    $('#ctl00_divFavorite').html(x);
+                                }
+                            },
+                            error: function (e) {
+                                alert('No Favorite Link Added !!!');
+                            }
+                        });
+
+                         $('#myModal_1').modal('toggle');
+                     });
+                 });
+    </script>
+
+    
+    
+
+    <script>
+
+        function DeleteFavLinks(ele) {
+            debugger;
+            var UA_No = '1195';
+                     var link = $(ele).prev().attr("href");
+
+                     var LinkNo = link.match("pageno=(.*)&");
+                     if (LinkNo == null) {
+                         LinkNo = link.substring(link.lastIndexOf("=") + 1, link.length);
+                     }
+                     else {
+                         LinkNo = LinkNo[1];
+                     }
+                     //Remove Star from Links
+                     $('li.dynamic').find('.fa').each(function (z, objz) {
+                         var link_d = $(this).prev().attr('href');
+
+                         var LinkNo_d = link_d.match("pageno=(.*)&");
+                         if (LinkNo_d == null) {
+                             LinkNo_d = link_d.substring(link_d.lastIndexOf("=") + 1, link_d.length);
+                         }
+                         else {
+                             LinkNo_d = LinkNo_d[1];
+                         }
+                         //Compairing Page No's
+                         if (LinkNo_d == LinkNo) {
+                             $(this).removeClass('active');
+                         }
+                     });
+                     //End
+
+                     //Delete Links
+                     $.ajax({
+                         url: '/WEB_API/Add_Fav_Links.asmx/Add_FavLink',
+                        data: { UA_NO: UA_No, LINK_NO: LinkNo, OTYPE: 2 },
+                        type: 'POST',
+                        dataType: 'text',
+                        success: function (r) {
+                            var json = "{" + r.split("{")[1].split("}")[0] + "}";
+                            var obj = jQuery.parseJSON(json);
+                        },
+                        error: function (err) {
+                            alert('Something went Wrong !!!');
+                        }
+                    });
+                     //End
+
+                     //Get Links
+                    var UL_Length = $(ele).closest('ul').children().length;
+                    if (UL_Length == 1) {
+                        $(ele).closest('ul').prev().closest('li').remove();
+                        $(ele).closest('ul').prev().remove();
+                        if ($('#DynamicDiv ul').length == 1) {
+                            $('#ctl00_divFavorite').html('<span><center><h3 style="font-family: ptsans, sans-serif;margin-top: 50%;color:#3498DB"><i class="fa fa-star-half-o" aria-hidden="true"></i><br>No Favorite Links Added !!</h1></center></span>');
+                        }
+                    }
+                    else {
+                        $(ele).parent().remove();
+                    }
+                     //End
+                }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("ul.level1 > li").mouseover(function () {
+                $('select:focus').blur();
+                $('.ms-options-wrap').removeClass("ms-active");
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var script = document.createElement('script')
+            script.setAttribute("type", "text/javascript")
+
+            document.getElementsByTagName("body")[0].appendChild(script);
+            $('nav ul.navbar-nav li').each(function () {
+                $(this).find('.popout').append('<span class="caret"></span>');
+                $(this).find('ul .popout span').addClass("arrow-right");
+                var $arrow = $(this).find('.popout span:nth-of-type(n+2)');
+                $($arrow).hide();
+            });
+        });
+
+    </script>
+    
+
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.breadcrumb-menu').find('ul').addClass('breadcrumb');
+            $('.breadcrumb-menu').find('li').addClass('element');
+            $('.breadcrumb-menu').find('li:eq(0)').removeClass('element').css({ 'color': 'blue !important' });
+            $('.element').text(function (_, txt) {
+                return txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase();
+            });
+        });
+    </script>
+
+    
+</body>
+</html>
