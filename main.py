@@ -2,7 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 import solve_captcha
 import constants
-import marks
+import change
+import send
 def download_captcha(soup):
     img = soup.findAll('img')
     div = soup.find('div',{'class':'col-sm-5 col-xs-5'})
@@ -65,7 +66,10 @@ if __name__ == "__main__":
         if(login_status==True):
             print('successfull login')
             stude_details=getCompleteDetails(session)
-            marks.checkMarksChange(stude_details.content)
+            t1=change.checkMarksChange(stude_details.content)
+            t2=change.checkAttendaceChange( stude_details.content)
+            if(t1 or t2):
+                send.sendIt()
             break
 
         if(count==15):
