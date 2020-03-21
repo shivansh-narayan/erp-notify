@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-
+import solve_captcha
 
 def download_captcha(soup):
     img = soup.findAll('img')
@@ -19,4 +19,7 @@ s = session.get(login_url)
 #print(s.content)
 soup = BeautifulSoup(s.content,'html.parser')
 download_captcha(soup)
+captcha_text= solve_captcha.getCaptcha()
+
+print(captcha_text)
 #print(soup.prettify)

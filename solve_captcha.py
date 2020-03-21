@@ -5,4 +5,9 @@ except ImportError:
 import pytesseract
 
 
-print(pytesseract.image_to_string(Image.open('image.jpg')))
+def getCaptcha():
+    captcha=pytesseract.image_to_string(Image.open('image.jpg'))
+    #print(captcha)
+    return captcha
+
+#getCaptcha()
