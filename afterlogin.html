@@ -1,0 +1,1833 @@
+
+
+<!DOCTYPE html >
+<html lang="en">
+<head id="ctl00_Head1"><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" /><title>
+	Birla Institute of Technology
+</title><link rel="shortcut icon" href="IMAGES/favicon.ico" type="image/x-icon" /><link rel="icon" href="IMAGES/favicon.ico" type="image/x-icon" />
+    
+    <!-- Tell the browser to be responsive to screen width -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="bootstrap/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="dist/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="bootstrap/css/customcss.css" rel="stylesheet" />
+    <link href="plugins/feedback/css/feedback.css" rel="stylesheet" />
+
+    
+    <style type="text/css">
+        .content-wrapper
+        {
+            min-height: 800px;
+        }
+
+        #ctl00_ContentPlaceHolder1_CalendarExtender2_today
+        {
+            z-index: 100;
+        }
+
+        #ctl00_ContentPlaceHolder1_ceDateOfAdmission_popupDiv
+        {
+            z-index: 10;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtReportDate
+        {
+            z-index: 0;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtDateOfBirth
+        {
+            z-index: 0;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtSearch_Enrollno_LC
+        {
+            z-index: 0;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtFromDate
+        {
+            z-index: 0;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtToDate
+        {
+            z-index: 0;
+        }
+
+        .bg-light-white
+        {
+            background-color: black;
+            opacity: 0.5;
+        }
+
+        input:hover
+        {
+            -moz-border-bottom-colors: none;
+            -moz-border-image: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            /*border-color: #A0A0A0 #B9B9B9 #B9B9B9;
+            border-right: 1px solid #B9B9B9;
+            border-style: solid;
+            border-width: 1px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;*/
+        }
+
+        /*.submenu {z-index: 9999; /* IE8 FIX for asp:Menu }*/
+
+
+        .visibleDiv, #topLeft, #topRight, #bottomLeft, #bottomRight
+        {
+            position: fixed;
+            width: 280px;
+            border: solid 1px #e1e1b1;
+            vertical-align: middle;
+            background: #ffdab9;
+            text-align: center;
+        }
+
+        #topLeft
+        {
+            top: 10px;
+            left: 10px;
+        }
+
+        #topRight
+        {
+            top: 10px;
+            right: 10px;
+        }
+
+        #bottomLeft
+        {
+            bottom: 10px;
+            left: 10px;
+        }
+
+        #bottomRight
+        {
+            bottom: 0px;
+            right: 0px;
+        }
+
+        #ctl00_ContentPlaceHolder1_rbl1UGPG_1
+        {
+            margin-left: 16px;
+        }
+
+
+        #ContentPlaceHolder1_ceEffectiveDate_popupDiv
+        {
+            z-index: 100;
+        }
+
+        .arrow-right
+        {
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid gray;
+        }
+    </style>
+
+    <style type="text/css">
+        .fieldset
+        {
+            border: 1px solid orange;
+        }
+
+        .ajax__calendar, .ajax__calendar_container
+        {
+            z-index: 100;
+        }
+
+        #ctl00_ContentPlaceHolder1_updScheme
+        {
+            height: 500px;
+        }
+
+        #ctl00_ContentPlaceHolder1_updpnl
+        {
+            height: 500px;
+        }
+
+        #ctl00_ContentPlaceHolder1_txtExamDate
+        {
+            z-index: 0;
+        }
+
+
+        .bg-white
+        {
+            background-color: #fff;
+        }
+
+        .text-white
+        {
+            color: #fff;
+        }
+
+            .text-white:hover
+            {
+                color: #fff;
+            }
+
+        /*.navbar-brand {
+            padding: 0px 15px;
+        }*/
+
+        .level4
+        {
+            top: 0 !important;
+            left: auto !important;
+            right: 80% !important;
+        }
+    </style>
+
+    <style>
+        .scrollable-menu
+        {
+            height: auto;
+            max-height: 350px;
+            overflow-x: hidden;
+        }
+    </style>
+
+    
+    <style type="text/css">
+        .freshwidget-dialog
+        {
+            position: fixed;
+            margin: auto;
+            right: 0;
+            left: initial;
+            transition: .2s ease;
+        }
+
+        div#minimize-div
+        {
+            right: 20px;
+            position: absolute;
+            left: 452px;
+            top: 10px;
+            z-index: 9999;
+            padding: 2px 10px;
+            cursor: pointer;
+        }
+
+        .modal-widget .modal-header .fa
+        {
+            float: right;
+        }
+
+        #minimized-div
+        {
+            padding: 5px 10px;
+            background-color: #dbdbdb;
+            font-size: 14px;
+            position: fixed;
+            bottom: 30px;
+            right: 5%;
+            display: none;
+            cursor: pointer;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            z-index: 9999;
+        }
+
+        .inactive
+        {
+            pointer-events: none;
+            opacity: .5;
+        }
+
+        a.freshwidget-theme
+        {
+            background-color: #4080bf !important;
+            border-color: #4080bf !important;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+        }
+
+        .frame-container::after
+        {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 46px;
+            width: 200px;
+            background-color: #fff;
+            top: 1px;
+            right: 22px;
+        }
+    </style>
+
+    <style>
+        .DelHover:hover
+        {
+            cursor: pointer;
+        }
+
+        /*ul, ol {
+            list-style: block;
+        }*/
+        #accordion1 li.pnl1
+        {
+            margin-bottom: 0px;
+        }
+    </style>
+    
+
+     
+<style>
+   .mynoti {
+        position:relative;
+       
+        }
+        .notificationContainer
+        {
+            background-color:#fff;
+            width:auto;float:right;display:none;
+            z-index:1000;
+            position:absolute;
+            right:10px;
+            top:10%;
+            box-shadow: 0 0 15px #333;
+            border:1px solid #ccc;
+            border-radius:10px;
+            margin-top:18px;
+        }
+
+        .notificationContainer::before{
+             content: '';
+  position: absolute;
+  top: -18px;
+  left:57%;
+  width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 17px 21px 17px;
+border-color: transparent transparent #347fbe transparent;
+        }
+        .notificationContainer .list-group-item
+        {
+            width: 270px;
+        }
+        .skin-blue .main-header .navbar .nav > li > a:hover
+        {
+          background:none;
+        }
+        ul.list-group.live-search
+        {
+            padding-left:0;
+            margin-bottom:0;
+        }
+        .Notification
+        {
+            margin-right:60px;
+        }
+
+        .notify
+
+        {
+            position:absolute;
+            background-color:red;
+            top:5px;
+            right:-20px;
+            width:15px;
+            height:15px;
+            line-height:15px;
+            text-align:center;
+        
+            border-radius:50%;
+               animation: notify;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+
+        }
+        
+@keyframes notify{
+    50%{
+        transform: scale(1.3);
+    }
+}
+
+        .bell_a
+        {
+            cursor:pointer;
+            position:relative;
+            width:15px;
+            max-height:10px;
+            margin-right:15px;
+           
+          
+        }
+        .fa-bell
+        {
+            margin-right:-5px;
+            color:black;
+            resize:both;
+          
+            color:#347fbe;
+            background-color:#fff;
+            padding:7px;
+            border-radius:50%;
+        }
+    .notificationContainer .list-group-item {
+        background-color:aliceblue;
+    }
+    </style>
+         
+
+
+    <!-- jQuery 2.2.0 -->
+    <script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/feedback/js/freshwidget.js"></script>
+    <script src="plugins/fastclick/fastclick.min.js"></script>
+    
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(document).ready(function () {
+                $("#myBtn").click(function () {
+                    $("#myModal").modal();
+                });
+                $("#myBtn2").click(function () {
+                    $("#myModal2").modal();
+                });
+                $("#myBtn3").click(function () {
+                    $("#myModal2").modal();
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(document).ready(function () {
+                $("#myBtn").click(function () {
+                    $("#myModal").modal();
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+    
+
+    <script type="text/javascript">
+        function CheckAlphabet(event, obj) {
+            var k = (window.event) ? event.keyCode : event.which;
+            if (k == 8 || k == 9 || k == 43 || k == 95 || k == 0 || k == 32 || k == 46) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            if (k >= 65 && k <= 90 || k >= 97 && k <= 122) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            else {
+                alert('Please Enter Alphabets Only!');
+                obj.focus();
+            }
+            return false;
+        }
+        function CheckNumeric(event, obj) {
+            var k = (window.event) ? event.keyCode : event.which;
+            //alert(k);
+            if (k == 8 || k == 9 || k == 43 || k == 95 || k == 0) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            if (k > 45 && k < 58) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            else {
+                alert('Please Enter numeric Value');
+                obj.focus();
+            }
+            return false;
+        }
+        function CheckAlphaNumeric(event, obj) {
+            var k = (window.event) ? event.keyCode : event.which;
+            // alert(k);
+            if (k == 8 || k == 9 || k == 16 || k == 0 || k == 32 || k == 45) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            if (k > 45 && k < 58 || k > 95 && k < 106 || k > 64 && k < 91 || k > 96 && k < 123) {
+                obj.style.backgroundColor = "White";
+                return true;
+            }
+            else {
+                alert('Please Enter Alphabets & Numbers Only!');
+                obj.focus();
+            }
+            return false;
+        }
+    </script>
+
+    
+
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            $('.jj #ctl00_mainMenu ul li').css({ 'display': 'none' });
+            $('.live-search-list #ctl00_mainMenu').clone().appendTo('.jj');
+
+            $('.jj #ctl00_mainMenu').find('li').each(function () {
+                $(this).attr('data-search-term', $(this).text().toLowerCase());
+            });
+
+            $('body').on('keyup', '.live-search-box', function () {
+                var searchTerm = $(this).val().toLowerCase();
+                $('.jj').find('li').each(function () {
+
+                    if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+                        $(this).fadeIn();
+                        $('.not-found-txt').css({ 'display': 'block !important' });
+                    } else {
+                        $(this).fadeOut();
+                        $('.not-found-txt').css({ 'display': 'none !important' });
+                    }
+                    return 0;
+                });
+
+                if ($('.live-search-box').val() == '') {
+                    $('.live-search-area').hide();
+                    $(this).removeClass('width210');
+                    $('.cross-btn').fadeOut();
+
+                } else {
+                    $('.live-search-area').show();
+                    $(this).addClass('width210');
+                    $('.cross-btn').fadeIn();
+                }
+            });
+
+            $(".navbar-toggle").click(function () {
+                $(".live-search-box").fadeToggle();
+                $('.cross-btn, .live-search-area').fadeOut();
+            });
+
+            $('body').on('click', '.cross-btn', function () {
+                $('.search-box .live-search-area').hide();
+                $('.live-search-box').val('');
+                $('.live-search-box').removeClass('width210');
+                $('.cross-btn').fadeOut();
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').on('focus', '.live-search-box', function () {
+                //   $(this).addClass('width210');
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+    </script>
+
+    
+    
+   
+
+    <script>
+        $(document).ready(function () {
+            $('.freshwidget-container').css({ 'display': 'block' });
+            $('body').on('click', '#minimize-div', function () {
+                $('.freshwidget-container').hide();
+                $('#minimized-div').show();
+                $('#freshwidget-button').addClass('inactive');
+            });
+            $('body').on('click', '#minimized-div', function () {
+                $('.freshwidget-container').show();
+            });
+            $('body').on('click', '.widget-close', function () {
+                $('#minimized-div').hide();
+                $('#freshwidget-button').removeClass('inactive');
+            });
+
+        });
+    </script>
+
+
+           
+        <script>
+            $(document).ready(function () {
+                $(".fa-bell").click(function () {
+                    $(".notificationContainer").fadeToggle(300);
+                    $("#notification_count").fadeOut("slow");
+                    return false;
+                });
+
+                //Document Click hiding the popup 
+                $(document).click(function () {
+                    $(".notificationContainer").hide();
+                });
+
+                //Popup on click
+                $(".notificationContainer").click(function () {
+                    return false;
+                });
+
+
+            });
+</script>
+    <script>
+        $(document).ready(function () {
+
+            var count = $('.noti-content').find('ul > li').length;
+            //alert(count);
+            $(this).find('.notify').append('<span>' + count + '<span>')
+            //setInterval(function () {
+            //    $(".notify").fadeTo(300, 0.1).fadeTo(500, 1.0);
+            //}, 500);
+
+        });
+
+        $(document).ready(function () {
+            $(".notificationContainer .list-group-item").on({
+                click: function () {
+                    $(this).css("background-color", "#fff");
+                }
+            });
+        });
+    </script>
+
+        
+
+
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+
+    <!-- Help & Support -->
+    <div id="minimized-div" title="maximize">
+        <span>Help &amp; Support</span>
+        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+    </div>
+    <!-- End -->
+
+    <form name="aspnetForm" method="post" action="./iitmsyl58TKP+ANRkGx9JJyOuNj4s0VV7CSYn6vridcMcCNk=?%2fhome.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="ctl00_ToolkitScriptManager1_HiddenField" id="ctl00_ToolkitScriptManager1_HiddenField" value="" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTE0MTI1MjA3Mg9kFgJmD2QWBGYPZBYCAgcPFQ4fYm9vdHN0cmFwL2Nzcy9ib290c3RyYXAubWluLmNzczVib290c3RyYXAvZm9udC1hd2Vzb21lLTQuNi4zL2Nzcy9mb250LWF3ZXNvbWUubWluLmNzcxlkaXN0L2Nzcy9BZG1pbkxURS5taW4uY3NzIWRpc3QvY3NzL3NraW5zL19hbGwtc2tpbnMubWluLmNzcyxwbHVnaW5zL2RhdGF0YWJsZXMvanF1ZXJ5LmRhdGFUYWJsZXMubWluLmNzcytwbHVnaW5zL2RhdGF0YWJsZXMvZGF0YVRhYmxlcy5ib290c3RyYXAuY3NzG2Jvb3RzdHJhcC9jc3MvY3VzdG9tY3NzLmNzcyFwbHVnaW5zL2ZlZWRiYWNrL2Nzcy9mZWVkYmFjay5jc3MicGx1Z2lucy9qUXVlcnkvalF1ZXJ5LTIuMi4wLm1pbi5qcytwbHVnaW5zL2RhdGF0YWJsZXMvanF1ZXJ5LmRhdGFUYWJsZXMubWluLmpzLnBsdWdpbnMvZGF0YXRhYmxlcy9kYXRhVGFibGVzLmJvb3RzdHJhcC5taW4uanMdYm9vdHN0cmFwL2pzL2Jvb3RzdHJhcC5taW4uanMicGx1Z2lucy9mZWVkYmFjay9qcy9mcmVzaHdpZGdldC5qcyJwbHVnaW5zL2Zhc3RjbGljay9mYXN0Y2xpY2subWluLmpzZAIBD2QWGAIFDzwrAA0BDBQrAAMFBzA6MCwwOjEUKwACFgYeBFRleHQFCEFDQURFTUlDHgVWYWx1ZQUBMh4LTmF2aWdhdGVVcmxlFCsAAgUDMDowFCsAAhYEHwAFD1N0dWRlbnQgUmVsYXRlZB8CZRQrAAUFDzA6MCwwOjEsMDoyLDA6MxQrAAIWBB8ABRNTdHVkZW50IEluZm9ybWF0aW9uHwIFKGFjYWRlbWljL1N0dWRlbnRJbmZvRW50cnkuYXNweD9wYWdlbm89NzRkFCsAAhYEHwAFDk9ubGluZSBQYXltZW50HwIFNGFjYWRlbWljL09ubGluZVBheW1lbnRfU3R1ZGVudExvZ2luLmFzcHg/cGFnZW5vPTE3OTdkFCsAAhYEHwAFE0NvdXJzZSBSZWdpc3RyYXRpb24fAgUqYWNhZGVtaWMvQ291cnNlUmVnaXN0cmF0aW9uLmFzcHg/cGFnZW5vPTg0ZBQrAAIWBB8ABRdTdHVkZW50IENvbXBsZXRlIERldGFpbB8CBTJBY2FkZW1pYy9Db21wcmVoZW5zaXZlX1N0dWRfUmVwb3J0MS5hc3B4P3BhZ2Vubz03NmQUKwACFgYfAAULRVhBTUlOQVRJT04fAQUBMx8CZRQrAAIFAzA6MBQrAAIWBB8ABQ9TdHVkZW50IFJlbGF0ZWQfAmUUKwAJBR8wOjAsMDoxLDA6MiwwOjMsMDo0LDA6NSwwOjYsMDo3FCsAAhYEHwAFJlN0dWRlbnQgQmFja0xvZyBSZWdpc3RyYXRpb24gKE9GRkxJTkUpHwIFOkFDQURFTUlDL0VYQU1JTkFUSU9OL0JhY2tsb2dFeGFtcmVnRW5kU2VtLmFzcHg/cGFnZW5vPTIxNzRkFCsAAhYEHwAFIU1ha2VVcCBFeGFtIFJlZ2lzdHJhdGlvbihPRkZMSU5FKR8CBTlBQ0FERU1JQy9FWEFNSU5BVElPTi9NYWtldXBFeGFtcmVnRW5kU2VtLmFzcHg/cGFnZW5vPTIxNzZkFCsAAhYEHwAFH1NjcnV0aW55IFJlZ2lzdHJhdGlvbiAoT0ZGTElORSkfAgUvYWNhZGVtaWMvUmVkcmVzc2FsUmVnaXN0cmF0aW9uLmFzcHg/cGFnZW5vPTIxNzdkFCsAAhYEHwAFJ0FkZGl0aW9uYWwgU2VtZXN0ZXIgQ291cnNlIFJlZ2lzdHJhdGlvbh8CBURBQ0FERU1JQy9FWEFNSU5BVElPTi9BZGRpdGlvbmFsQmFja2xvZ0V4YW1yZWdFbmRTZW0uYXNweD9wYWdlbm89MjI4NWQUKwACFgQfAAUgU2hvcnQgU2VtZXN0ZXIgRXhhbSBSZWdpc3RyYXRpb24fAgU4QUNBREVNSUMvRVhBTUlOQVRJT04vc3VtbWVycmVnaXN0cmF0aW9uLmFzcHg/cGFnZW5vPTIyOTBkFCsAAhYEHwAFKkJhY2tsb2cgRXhhbSBSZWdpc3RyYXRpb24gKE5PTiBDT0xMSUdVQVRFKR8CBUZBQ0FERU1JQy9FWEFNSU5BVElPTi9Ob25Db2xsaWd1YXRlQmFja2xvZ1JlZ2lzdHJhdGlvbi5hc3B4P3BhZ2Vubz0yMjkxZBQrAAIWBB8ABR1CYWNrbG9nIFJlZ2lzdHJhdGlvbiAoT05MSU5FKR8CBUhBQ0FERU1JQy9FWEFNSU5BVElPTi9CYWNrbG9nRXhhbXJlZ0VuZFNlbXRocm91Z2hQYXltZW50LmFzcHg/cGFnZW5vPTIzMjJkFCsAAhYEHwAFH1NjcnVudGlueSBSZWdpc3RyYXRpb24gKE9OTElORSkfAgU8QUNBREVNSUMvU2NydW5pdHlSZWdpc3RyYXRpb250aHJvdWdoUGF5bWVudC5hc3B4P3BhZ2Vubz0yMzMzZBYgZg9kFgJmDxUBCEFDQURFTUlDZAIBD2QWAmYPFQEPU3R1ZGVudCBSZWxhdGVkZAICD2QWAmYPFQETU3R1ZGVudCBJbmZvcm1hdGlvbmQCAw9kFgJmDxUBDk9ubGluZSBQYXltZW50ZAIED2QWAmYPFQETQ291cnNlIFJlZ2lzdHJhdGlvbmQCBQ9kFgJmDxUBF1N0dWRlbnQgQ29tcGxldGUgRGV0YWlsZAIGD2QWAmYPFQELRVhBTUlOQVRJT05kAgcPZBYCZg8VAQ9TdHVkZW50IFJlbGF0ZWRkAggPZBYCZg8VASZTdHVkZW50IEJhY2tMb2cgUmVnaXN0cmF0aW9uIChPRkZMSU5FKWQCCQ9kFgJmDxUBIU1ha2VVcCBFeGFtIFJlZ2lzdHJhdGlvbihPRkZMSU5FKWQCCg9kFgJmDxUBH1NjcnV0aW55IFJlZ2lzdHJhdGlvbiAoT0ZGTElORSlkAgsPZBYCZg8VASdBZGRpdGlvbmFsIFNlbWVzdGVyIENvdXJzZSBSZWdpc3RyYXRpb25kAgwPZBYCZg8VASBTaG9ydCBTZW1lc3RlciBFeGFtIFJlZ2lzdHJhdGlvbmQCDQ9kFgJmDxUBKkJhY2tsb2cgRXhhbSBSZWdpc3RyYXRpb24gKE5PTiBDT0xMSUdVQVRFKWQCDg9kFgJmDxUBHUJhY2tsb2cgUmVnaXN0cmF0aW9uIChPTkxJTkUpZAIPD2QWAmYPFQEfU2NydW50aW55IFJlZ2lzdHJhdGlvbiAoT05MSU5FKWQCCQ8PFgIeCEltYWdlVXJsBRR+L0lNQUdFUy9ub3Bob3RvLmpwZ2RkAgsPDxYCHwMFFH4vSU1BR0VTL25vcGhvdG8uanBnZGQCDQ8PFgIfAAURU0hJVkFOU0ggIE5BUkFZQU5kZAIPDxYCHgdWaXNpYmxlaGQCGQ8PZBYCHgdPbkNsaWNrBSlyZXR1cm4gY29uZmlybSgnQXJlIFlvdSBTdXJlIFRvIExvZ291dD8nKWQCIQ8WAh8EZxYCAgEPFgIeBGhyZWYFTWh0dHBzOi8vZXJwLmJpdG1lc3JhLmFjLmluL0FjYWRlbWljL0NvbXByZWhlbnNpdmVfU3R1ZF9SZXBvcnQxLmFzcHg/cGFnZW5vPTc2FgJmDxYCHglpbm5lcmh0bWwFF1N0dWRlbnQgQ29tcGxldGUgRGV0YWlsZAIjDxYCHwRnFgICAQ8WAh8GBUVodHRwczovL2VycC5iaXRtZXNyYS5hYy5pbi9hY2FkZW1pYy9Db3Vyc2VSZWdpc3RyYXRpb24uYXNweD9wYWdlbm89ODQWAmYPFgIfBwUTQ291cnNlIFJlZ2lzdHJhdGlvbmQCJQ8WAh8EZxYCAgEPFgIfBgVPaHR0cHM6Ly9lcnAuYml0bWVzcmEuYWMuaW4vYWNhZGVtaWMvT25saW5lUGF5bWVudF9TdHVkZW50TG9naW4uYXNweD9wYWdlbm89MTc5NxYCZg8WAh8HBQ5PbmxpbmUgUGF5bWVudGQCJw8WAh8EZxYCAgEPFgIfBgVDaHR0cHM6Ly9lcnAuYml0bWVzcmEuYWMuaW4vYWNhZGVtaWMvU3R1ZGVudEluZm9FbnRyeS5hc3B4P3BhZ2Vubz03NBYCZg8WAh8HBRNTdHVkZW50IEluZm9ybWF0aW9uZAIpDxYCHwRnFgICAQ8WAh8GBVNodHRwczovL2VycC5iaXRtZXNyYS5hYy5pbi9BQ0FERU1JQy9FWEFNSU5BVElPTi9zdW1tZXJyZWdpc3RyYXRpb24uYXNweD9wYWdlbm89MjI5MBYCZg8WAh8HBSBTaG9ydCBTZW1lc3RlciBFeGFtIFJlZ2lzdHJhdGlvbmQCKw8WAh8EZxYCAgEPFgIfBgU2aHR0cHM6Ly9lcnAuYml0bWVzcmEuYWMuaW4vUXVpY2tMaW5rcy5hc3B4P3BhZ2Vubz0yMjc4FgJmDxYCHwcFC1F1aWNrIExpbmtzZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAQUKY3RsMDAkSW1nMUQpYOZxlUGRUmeeQBaTtp1ncZ87" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=b1Y0qzb4P5-RtYbUBovJXK-crJHeMuzKtZTXJaljaAhNoyy9L5D6iCuV4trFPrIDhHrzCxQYaM2mInSmWK6PGCPB5Cw1&amp;t=637103544297649313" type="text/javascript"></script>
+
+<script> javascript:function AppValueSet() {var c= 'Tab'; return c;} </script>
+<script src="/ScriptResource.axd?d=P-6qRUfeZlyvOjo6bvjnb0ZmzTwP_8DvsOC-1-qsBSzet5M7vkQnHgcn1OJsuRmwRCopNybTGFq5aLHsa1A_FvlZNHkbfNRvNahsENkC4EbTkDm--0ik_me-IrG201PWmj6gCA2&amp;t=5f65bdf4" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=actQ506nHN3V4GkQE7BKs8QJoaoJvwfdVgMxxCg6BrE7BrWoLoU-vYQcdQdS_tTUFu1th40Qj6uWwAz8_r3W03Rm1TaXlNn_yXPGTVAD65cfkotBzcXy42j5zo-hCgXCBGY1bvfAmtFXUUgWk-ZRR6zUn5I1&amp;t=ffffffffecf19baa" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=V4jh_Yj9DmLJ-bMbDZxO3hh_3saQlQwYDyXEriaNtlwF9gvmJmInoFZF-1--u1cmivY0CtsP7ICdQ_rlOpSJtY2OAeoOelxl8XicfoxhHMjk-RBpb6oWGTBJrmlDc7iHBXtzc89vSzYWynuiae2xGVltJOWalQz8qp8OE-FS1_uVQV8r0&amp;t=ffffffffecf19baa" type="text/javascript"></script>
+<script src="/home.aspx?_TSM_HiddenField_=ctl00_ToolkitScriptManager1_HiddenField&amp;_TSM_CombinedScripts_=%3b%3bAjaxControlToolkit%2c+Version%3d3.0.20229.20843%2c+Culture%3dneutral%2c+PublicKeyToken%3d28f01b0e84b6d53e%3aen-US%3a3b7d1b28-161f-426a-ab77-b345f2c428f5%3ae2e86ef9%3a1df13a87%3a3858419b%3a9ea3f0e2%3a96741c43%3ac4c00916%3ac7c04611%3acd120801%3a38ec41c0" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="8D0E13E6" />
+</div>
+        <div class="wrapper">
+            <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'aspnetForm', ['tctl00$updPopUp_Link',''], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand">
+                                
+                                <input type="image" name="ctl00$Img1" id="ctl00_Img1" src="IMAGES/bitmesralogo.png" style="border-width:0px;height: 37px; width: 37px;" />
+                                
+                            </a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <div class="live-search-list">
+                                <a href="#ctl00_mainMenu_SkipLink"><img alt="Skip Navigation Links" src="/WebResource.axd?d=PGu3gXOrXeRlHkd7uYmbGmxDtOC0kdpS2TjNL8k0Gd1OuJO0y5q23NAV3pY3PvAdu_T5TkUlE0NBViFfXZJEjinI8Ak1&amp;t=637103544297649313" width="0" height="0" style="border-width:0px;" /></a><div id="ctl00_mainMenu">
+	<ul class="level1 nav navbar-nav">
+		<li><a class="popout level1" href="#" onclick="__doPostBack(&#39;ctl00$mainMenu&#39;,&#39;2&#39;)">
+                                        ACADEMIC
+                                    </a><ul class="level2 dropdown-menu">
+			<li><a class="popout level2" href="#" onclick="__doPostBack(&#39;ctl00$mainMenu&#39;,&#39;2\\Student Related&#39;)">
+                                        Student Related
+                                    </a><ul class="level3 dropdown-menu">
+				<li><a class="level3" href="academic/StudentInfoEntry.aspx?pageno=74">
+                                        Student Information
+                                    </a></li><li><a class="level3" href="academic/OnlinePayment_StudentLogin.aspx?pageno=1797">
+                                        Online Payment
+                                    </a></li><li><a class="level3" href="academic/CourseRegistration.aspx?pageno=84">
+                                        Course Registration
+                                    </a></li><li><a class="level3" href="Academic/Comprehensive_Stud_Report1.aspx?pageno=76">
+                                        Student Complete Detail
+                                    </a></li>
+			</ul></li>
+		</ul></li><li><a class="popout level1" href="#" onclick="__doPostBack(&#39;ctl00$mainMenu&#39;,&#39;3&#39;)">
+                                        EXAMINATION
+                                    </a><ul class="level2 dropdown-menu">
+			<li><a class="popout level2" href="#" onclick="__doPostBack(&#39;ctl00$mainMenu&#39;,&#39;3\\Student Related&#39;)">
+                                        Student Related
+                                    </a><ul class="level3 dropdown-menu">
+				<li><a class="level3" href="ACADEMIC/EXAMINATION/BacklogExamregEndSem.aspx?pageno=2174">
+                                        Student BackLog Registration (OFFLINE)
+                                    </a></li><li><a class="level3" href="ACADEMIC/EXAMINATION/MakeupExamregEndSem.aspx?pageno=2176">
+                                        MakeUp Exam Registration(OFFLINE)
+                                    </a></li><li><a class="level3" href="academic/RedressalRegistration.aspx?pageno=2177">
+                                        Scrutiny Registration (OFFLINE)
+                                    </a></li><li><a class="level3" href="ACADEMIC/EXAMINATION/AdditionalBacklogExamregEndSem.aspx?pageno=2285">
+                                        Additional Semester Course Registration
+                                    </a></li><li><a class="level3" href="ACADEMIC/EXAMINATION/summerregistration.aspx?pageno=2290">
+                                        Short Semester Exam Registration
+                                    </a></li><li><a class="level3" href="ACADEMIC/EXAMINATION/NonColliguateBacklogRegistration.aspx?pageno=2291">
+                                        Backlog Exam Registration (NON COLLIGUATE)
+                                    </a></li><li><a class="level3" href="ACADEMIC/EXAMINATION/BacklogExamregEndSemthroughPayment.aspx?pageno=2322">
+                                        Backlog Registration (ONLINE)
+                                    </a></li><li><a class="level3" href="ACADEMIC/ScrunityRegistrationthroughPayment.aspx?pageno=2333">
+                                        Scruntiny Registration (ONLINE)
+                                    </a></li>
+			</ul></li>
+		</ul></li>
+	</ul>
+</div><a id="ctl00_mainMenu_SkipLink"></a>
+                            </div>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav">
+                                 <!-- START Notification Box -->
+                                       
+                                           <li id="ctl00_liNotification" title="Notification" data-toggle="modal" data-target="#ModelNotification" style="margin: 3px 10px;  ">
+                                               <a href="#" class="bell_a"><i class="fa fa-bell"></i><span class="notify"></span></a>
+                                               <div class="noti-content">
+
+                                                   <div class="noti-top-arrow"></div>
+                                                   <ul id="notiContent"></ul>
+                                               </div>
+                                           </li> 
+                                            
+                                  <!-- END Notification Box -->
+
+                                <!-- Search Box -->
+                                <li>
+                                    <div class="search-box">
+                                        <div class="cross-btn">
+                                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        </div>
+                                        <input type="search" class="live-search-box" placeholder="search here" />
+                                        <div class="live-search-area scrollbar">
+                                            <div class="jj"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- X -->
+
+                                <li class="dropdown user user-menu">
+                                    <!-- Menu Toggle Button -->
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <img id="ctl00_imgDash" class="user-image" alt="User Image" src="IMAGES/nophoto.jpg" style="border-width:0px;" />
+                                        <span class="hidden-xs"><i class="fa fa-chevron-circle-down"></i></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <!-- The user image in the menu -->
+                                        <li class="user-header">
+                                            <img id="ctl00_imgPhoto" class="img-circle" alt="User Image" src="IMAGES/nophoto.jpg" style="border-width:0px;" />
+                                            <p>
+                                                <span>Welcome
+                                                <span id="ctl00_lblLink">SHIVANSH  NARAYAN</span></span>
+                                            </p>
+                                            
+                                        </li>
+                                        <!-- Menu Body -->
+                                        <li class="user-body">
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <div class="row no-gutters">
+                                                        <div class="col-sm-6 col-xs-6">
+                                                            <a href="changePassword.aspx" class="btn btn-default btn-sm form-control" style="border-radius: 0; margin-left: -5px; color: #808080"><span style="vertical-align: sub"><b>Change Password</b></span> </a>
+                                                        </div>
+                                                        <div class="col-sm-6 col-xs-6">
+                                                            <input type="submit" name="ctl00$btnuser" value="User Profile" id="ctl00_btnuser" class="btn btn-default btn-sm form-control" style="font-weight:bold;border-radius: 0;" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- Menu Footer-->
+                                        <li class="user-footer">
+                                            <div class="text-center">
+                                                <a id="ctl00_btndashboard" class="btn btn-primary btn-flat" href="javascript:__doPostBack(&#39;ctl00$btndashboard&#39;,&#39;&#39;)">DashBoard</a>
+                                                <a id="ctl00_btnHome" class="btn btn-success btn-flat" href="javascript:__doPostBack(&#39;ctl00$btnHome&#39;,&#39;&#39;)">Home</a>
+                                                <a onclick="return confirm(&#39;Are You Sure To Logout?&#39;);" id="ctl00_btnLogout" class="btn btn-warning btn-flat" href="javascript:__doPostBack(&#39;ctl00$btnLogout&#39;,&#39;&#39;)">Log Out</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-custom-menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+
+            <!-- Fix Menu -->
+            <div class="fix-menu" style="margin-top: -60px">
+                <ul class="list-group">
+                    <li class="list-group-item" title="Dashboard">
+                        <a id="ctl00_btnDash" href="javascript:__doPostBack(&#39;ctl00$btnDash&#39;,&#39;&#39;)"> <i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
+                    <li class="list-group-item" title="Recent Links" data-toggle="modal" data-target="#myModalz"><i class="fa fa-link"></i></li>
+                    <li class="list-group-item" title="Favorite Links" id="Fav_Model"><i class="fa fa-star"></i></li>
+                </ul>
+            </div>
+            <!-- X -->
+
+            <!-- Favorites -->
+            
+            <div class="modal right fade" id="myModal_1" role="dialog">
+                <div id="ctl00_updPopUp_Link">
+	
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="pull-right flex">
+
+                                        
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="pull-left">
+                                        <h4 class="modal-title">Favorites</h4>
+                                    </div>
+                                </div>
+                                <div id="ctl00_divFavorite" class="modal-body with-fav-sticker-links">
+                                </div>
+                                <div class="modal-footer">
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    
+</div>
+            </div>
+            <!-- END -->
+
+            
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Feeback Us <i class="fa fa-comment-o"></i></h4>
+                        </div>
+                        <div class="modal-body modal-warning">
+                            <div class="form-group col-md-12">
+                                <textarea name="ctl00$TextBox1" rows="2" cols="20" id="ctl00_TextBox1" class="form-control" placeholder="Enter any comment here....">
+</textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+            
+            <div class="modal right fade" id="myModalz" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Quick Links</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li id="ctl00_li1" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/Academic/Comprehensive_Stud_Report1.aspx?pageno=76" id="ctl00_ql1"><i id="ctl00_iql1">Student Complete Detail</i></a></span></li>
+                                <li id="ctl00_li2" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/academic/CourseRegistration.aspx?pageno=84" id="ctl00_ql2"><i id="ctl00_iql2">Course Registration</i></a></span></li>
+                                <li id="ctl00_li3" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/academic/OnlinePayment_StudentLogin.aspx?pageno=1797" id="ctl00_ql3"><i id="ctl00_iql3">Online Payment</i></a></span></li>
+                                <li id="ctl00_li4" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/academic/StudentInfoEntry.aspx?pageno=74" id="ctl00_ql4"><i id="ctl00_iql4">Student Information</i></a></span></li>
+                                <li id="ctl00_li5" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/ACADEMIC/EXAMINATION/summerregistration.aspx?pageno=2290" id="ctl00_ql5"><i id="ctl00_iql5">Short Semester Exam Registration</i></a></span></li>
+                                <li id="ctl00_li6" class="list-group-item"><span><a href="https://erp.bitmesra.ac.in/QuickLinks.aspx?pageno=2278" id="ctl00_ql6"><i id="ctl00_iql6">Quick Links</i></a></span></li>
+                                
+                                
+                                
+                                
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            
+                            <button type="button" class="btn btn-danger close-btn" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <!-- Main content -->
+     
+             
+                <div class="mynoti">
+                    <div class="notificationContainer">
+                        <div class="noti-content" >
+                            <h5 class="notificationContainer-title" style="text-align: center; background-color: #347fbe; color: #fff; 
+                               border-top-left-radius: 10px; border-top-right-radius: 10px; margin: 0; padding: 10px;">NOTIFICATION DETAILS</h5>
+                            <div id="ctl00_divNotification" class="modal-body with-fav-sticker-links" style="padding: 0px 5px 5px 5px;overflow-y:scroll; height:350px;">
+                            <ul class='list-group live-search'></div>
+                        </div>
+                    </div>
+                </div>
+             
+
+            <div class="content-wrapper">
+                <div class="container">
+                    
+                    <div class="breadcrumb-menu">
+                        <ul class="breadcrumb" style="padding-right: 0">
+                            <li>
+                                <a id="ctl00_LinkButton1" href="javascript:__doPostBack(&#39;ctl00$LinkButton1&#39;,&#39;&#39;)"><i class="fa fa-home text-primary" style="font-size:15px"></i></a></li>
+                        </ul>
+                        <span id="ctl00_lblpath"></span>
+                    </div>
+                    
+                    <section class="content" style="margin-bottom: 50px; padding: 0PX;">
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-12 col-sm-12">
+                                <a id="ctl00_lnkFake" href="javascript:__doPostBack(&#39;ctl00$lnkFake&#39;,&#39;&#39;)"></a>
+                                
+                                <div id="ctl00_pnlPopup" class="modalPopup" style="display: none">
+	
+                                    <div class="modal fade in" style="display: block;">
+                                        <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="blinking" style="color: #ff0000; font-weight: bold;">Session Expiring!</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        <span style="color: #3c8dbc; font-weight: bold">Your Session will expire in&nbsp;<span id="seconds" style="color: #FF0000; font-weight: bold"></span>&nbsp;seconds.<br />
+                                                            Do you want to continue?</span>
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" name="ctl00$btnYes" value="Yes" id="ctl00_btnYes" class="yes btn-primary btn" />
+                                                    <input type="submit" name="ctl00$btnNo" value="No" id="ctl00_btnNo" class="no btn-warning btn" data-dismiss="modal" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+</div>
+                                
+    
+    
+    <style>
+
+        .breadcrumb-menu {
+        display:none
+        
+        }
+
+
+        .info-box, .box {
+            -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
+            -moz-animation: fadein 4s; /* Firefox < 16 */
+            -ms-animation: fadein 4s; /* Internet Explorer */
+            -o-animation: fadein 4s; /* Opera < 12.1 */
+            animation: fadein 4s;
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 3;
+            }
+        }
+
+        @-moz-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 3;
+            }
+        }
+
+        @-webkit-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 3;
+            }
+        }
+
+        @-ms-keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 3;
+            }
+        }
+
+        .san {
+            background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
+            background-image: -moz-linear-gradient(top, whiteffd, #eef2f5);
+            background-image: -o-linear-gradient(top, whiteffd, #eef2f5);
+            background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
+        }
+
+        .animated {
+            animation-duration: 2.5s;
+            animation-fill-mode: both;
+            animation-iteration-count: 1;
+        }
+
+        .rubberBand {
+            animation-name: rubberBand;
+        }
+
+        @keyframes rubberBand {
+            0% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scaleX(1.25) scaleY(0.75);
+            }
+
+            40% {
+                transform: scaleX(0.75) scaleY(1.25);
+            }
+
+            60% {
+                transform: scaleX(1.15) scaleY(0.85);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+    <style>
+        .carousel-fade .carousel-inner .item {
+            -webkit-transition-property: opacity;
+            transition-property: opacity;
+        }
+
+        .carousel-fade .carousel-inner .item,
+        .carousel-fade .carousel-inner .active.left,
+        .carousel-fade .carousel-inner .active.right {
+            opacity: 0;
+        }
+
+        .carousel-fade .carousel-inner .active,
+        .carousel-fade .carousel-inner .next.left,
+        .carousel-fade .carousel-inner .prev.right {
+            opacity: 1;
+        }
+
+            .carousel-fade .carousel-inner .next,
+            .carousel-fade .carousel-inner .prev,
+            .carousel-fade .carousel-inner .active.left,
+            .carousel-fade .carousel-inner .active.right {
+                left: 0;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+
+        .carousel-fade .carousel-control {
+            z-index: 2;
+        }
+    </style>
+    <style type="text/css">
+        .chart {
+            visibility: hidden;
+        }
+
+        .item {
+            display: inline-block;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .wrong-item {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+            -webkit-transition: all 0.6s cubic-bezier(0.00, 0.84, 0.44, 1);
+            transition: all 0.2s cubic-bezier(0.00, 0.00, 0.00, 1);
+        }
+
+            .wrong-item:hover,
+            .wrong-item:active {
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                /*-webkit-transform: scale(1.00, 1.25);*/
+                transform: scale(1.20, 1.05);
+            }
+
+        .bot {
+            box-shadow: 0 -5px 5px -5px #333;
+        }
+
+        .l {
+            width: 525px;
+            height: 2px;
+            background: black;
+            transition: width 1s;
+            -webkit-transition: width 1s; /* Safari 3.1 to 6.0 */
+        }
+
+        .top {
+            /*box-shadow: 0 -5px 15px -5px #333;*/
+            box-shadow: 0 0 15px #333;
+        }
+
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 60px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            /*background-color: blue;*/
+            /*color: white;*/
+            cursor: pointer;
+            color: #00569d;
+            /*padding: 15px;
+            border-radius: 10px;*/
+        }
+    </style>
+    <style>
+        .beauty {
+            z-index: 90;
+        }
+
+            .beauty:hover {
+                cursor: pointer;
+            }
+    </style>
+    <style style="text/css">
+        .marquee {
+            height: 40px;
+            overflow: hidden;
+            position: relative;
+            color: red;
+            font: bold;
+            font-size: 16px;
+        }
+
+            .marquee p {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                line-height: 30px;
+                text-align: center;
+                /* Starting position */
+                -moz-transform: translateX(50%);
+                -webkit-transform: translateX(50%);
+                transform: translateX(50%);
+                /* Apply animation to this element */
+                -moz-animation: scroll-left 15s linear infinite;
+                -webkit-animation: scroll-left 15s linear infinite;
+                animation: scroll-left 15s linear infinite;
+                -moz-animation: bouncing-text 15s linear infinite alternate;
+                -webkit-animation: bouncing-text 15s linear infinite alternate;
+                animation: bouncing-text 15s linear infinite alternate;
+            }
+        /* Move it (define the animation) */
+        @-moz-keyframes bouncing-text {
+            0% {
+                -moz-transform: translateX(50%);
+            }
+
+            100% {
+                -moz-transform: translateX(-50%);
+            }
+        }
+
+        @-webkit-keyframes bouncing-text {
+            0% {
+                -webkit-transform: translateX(50%);
+            }
+
+            100% {
+                -webkit-transform: translateX(-50%);
+            }
+        }
+
+        @keyframes bouncing-text {
+            0% {
+                -moz-transform: translateX(50%); /* Browser bug fix */
+                -webkit-transform: translateX(50%); /* Browser bug fix */
+                transform: translateX(50%);
+            }
+
+            100% {
+                -moz-transform: translateX(-50%); /* Browser bug fix */
+                -webkit-transform: translateX(-50%); /* Browser bug fix */
+                transform: translateX(-50%);
+            }
+        }
+        /* Move it (define the animation) */
+        @-moz-keyframes scroll-left {
+            0% {
+                -moz-transform: translateX(100%);
+            }
+
+            100% {
+                -moz-transform: translateX(-100%);
+            }
+        }
+
+        @-webkit-keyframes scroll-left {
+            0% {
+                -webkit-transform: translateX(100%);
+            }
+
+            100% {
+                -webkit-transform: translateX(-100%);
+            }
+        }
+
+        @keyframes scroll-left {
+            0% {
+                -moz-transform: translateX(100%); /* Browser bug fix */
+                -webkit-transform: translateX(100%); /* Browser bug fix */
+                transform: translateX(100%);
+            }
+
+            100% {
+                -moz-transform: translateX(-100%); /* Browser bug fix */
+                -webkit-transform: translateX(-100%); /* Browser bug fix */
+                transform: translateX(-100%);
+            }
+            /* Apply animation to this element */
+        }
+    </style>
+    <script type="text/javascript">
+        function functionConfirm() {
+            var labelText = document.getElementById("ctl00_ContentPlaceHolder1_lblpopup").innerHTML;
+            swal({
+                // title: "Hi Every one!!",
+                text: labelText,
+                confirmButtonColor: 'green',
+                type: "info",
+                //  timer: 2000
+                // imageUrl: 'thumbs-up.jpg'
+            });
+        }
+    </script>
+    
+    
+    
+    <script type="text/javascript">
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            }
+            else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            //document.body.scrollTop = 0;
+            //document.documentElement.scrollTop = 0;
+            return $("html, body").animate({
+                scrollTop: 0
+            }, 1000), !1
+
+        }
+    </script>
+    <span onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-circle-up fa-3x" aria-hidden="true"></i></span>
+    <div class="row">
+        
+        <span id="ctl00_ContentPlaceHolder1_lblpopup" style="display: none"></span>
+        <div id="ctl00_ContentPlaceHolder1_divNews" class="col-md-6">
+            <div class="col-md-12 beauty">
+                <div class="box box-primary wrong-item item top" id="one9">
+                    <div id="i" class="l"></div>
+                    <div class="box-header with-border">
+                        <i class="fa fa-newspaper-o"></i>
+                        <h3 class="box-title">Latest News</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <p><MARQUEE onmouseover='this.stop();' onmouseout='this.start();'direction='up' scrollamount='1' scrolldelay='5'width='260' height='300'><P><FONT SIZE='2' COLOR='Black'></Font></P></MARQUEE></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="ctl00_ContentPlaceHolder1_divNotices" class="col-md-6">
+            <div class="col-md-12 beauty">
+                <div class="box box-primary wrong-item item top">
+                    <div class="box-header with-border">
+                        <i class="fa fa-list"></i>
+                        <h3 class="box-title">Latest Notices</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div id="chartHere">
+                        </div>
+                        <div id="chartHere1">
+                        </div>
+                        <p><MARQUEE onmouseover='this.stop();' onmouseout='this.start();'direction='up' scrollamount='1' scrolldelay='5'width='260' height='300'><P><FONT SIZE='2' COLOR='Black'></Font></P></MARQUEE></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="col-md-12">
+            <div class="box box-primary ">
+                <div class="box-header with-border">
+                    <strong><i class="fa fa-calendar text-blue"></i>Calendar</strong>
+                </div>
+                <div class="box-body">
+                    <div>
+                        <table width="100%">
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr align="center">
+                                <td>
+                                    </td>
+                                <td><span style="display: none">[Beta Version ]</span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </table>
+                        
+                        <div id="ctl00_ContentPlaceHolder1_Panel2" style="border-style:Solid;display: none">
+	
+                            <div class="popup_Container" width="100px">
+                                <div class="popup_Titlebar" id="PopupHeader">
+                                    <table width="100px">
+                                        <tr align="center">
+                                            <td><b>Enter Text</b></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="popup_Body">
+                                    <p>
+                                        <textarea name="ctl00$ContentPlaceHolder1$txtFBCONTENT" rows="2" cols="20" id="ctl00_ContentPlaceHolder1_txtFBCONTENT" class="form-control" style="width:100px;">
+</textarea>
+                                    </p>
+                                </div>
+                                <div class="popup_Buttons">
+                                    <input type="submit" name="ctl00$ContentPlaceHolder1$btnCancel" value="Cancel" id="ctl00_ContentPlaceHolder1_btnCancel" />
+                                </div>
+                            </div>
+                        
+</div>
+                        <iframe src="Calendar.aspx" id="FullCalendarFrame" scrolling="no" frameborder="0" width="100%" height="550px" class="" style="padding-top: 1px;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <footer class="main-footer navbar-fixed-bottom ">
+                <strong>Designed and Developed By:<a href="http://www.iitms.co.in" target="_blank"> MasterSoft </a>Copyright &copy; 2016.</strong> All rights reserved.
+            </footer>
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+                //alert("1");
+                $("#ctl00_mainMenu ul .has-popup").on("mouseenter", function () {
+                    // alert("a");
+                    var $Ww = $(window).width();
+                    var $mItem = $(this).find("ul");
+                    var $mFirstL = $(this).closest(".dropdown-menu");
+                    var mw = $mItem.width() + $mFirstL.offset() + $mFirstL.width();
+                    //var $Mw = $mItem.width() + $mFirstL().offset().left + $mFirstL.width();
+                    var mrLeft = 0 - ($mItem.width() + $mFirstL.width());
+                    //alert("1");
+                    if ($Ww < mw) {
+                        $mItem.css("margin-left", mrLeft);
+                    }
+                });
+            });
+        </script>
+
+ 
+       
+
+
+        <script type="text/javascript">
+            function SessionExpireAlert(timeout) {
+                var seconds = timeout / 1000;
+                document.getElementsByName("secondsIdle").innerHTML = seconds;
+                document.getElementsByName("seconds").innerHTML = seconds;
+                setInterval(function () {
+                    seconds--;
+                    document.getElementById("seconds").innerHTML = seconds;
+                    document.getElementById("secondsIdle").innerHTML = seconds;
+                }, 1000);
+                setTimeout(function () {
+                    //Show Popup before 20 seconds of timeout.
+                    $find("mpeTimeout").show();
+                }, timeout - 60 * 1000);
+                setTimeout(function () {
+                    window.location = "/PresentationLayer/default.aspx";
+                }, timeout);
+            };
+            function ResetSession() {
+                window.location = window.location.href;
+                //alert('Log out');
+            }
+        </script>
+
+        <script type="text/javascript">
+            function showglobclk() {
+                obj = document.getElementById('globalSubNav');
+                obj.style.display = (obj.style.display == 'block') ? 'none' : 'block';
+                return false;
+            }
+
+            function showglobnav() {
+                obj = document.getElementById('globalSubNav');
+                obj.style.display = 'block';
+                return false;
+            }
+
+            function hideglobnav() {
+                obj = document.getElementById('globalSubNav');
+                obj.style.display = 'none';
+                return false;
+            }
+        </script>
+
+        <script type="text/javascript">
+            function cancelClickErr() {
+            }
+        </script>
+
+        <script type="text/javascript">
+            function DisableBackButton() {
+                window.history.forward()
+            }
+            DisableBackButton();
+            window.onload = DisableBackButton;
+            window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+            window.onunload = function () { void (0) }
+        </script>
+
+        <script type="text/javascript">
+            jQuery(function ($) {
+                $(window).load(function () {
+                    var script = document.createElement('script')
+                    script.setAttribute("type", "text/javascript")
+                    //script.setAttribute("src", "bootstrap/js/custom.js")
+                    document.getElementsByTagName("body")[0].appendChild(script);
+                    $('nav ul.navbar-nav li').each(function () {
+                        $(this).find('.popout').append('<span class="caret"></span>');
+                        $(this).find('ul .popout span').addClass("arrow-right");
+                        //  $(".sf-with-ul .caret").each(function () {
+                        var $arrow = $(this).find('.popout span:nth-of-type(n+2)');
+                        // $($arrow).removeClass("caret");
+                        //$($arrow).addClass("caret-second");
+                        $($arrow).hide();
+                        //});
+                    });
+                });
+            });
+
+        </script>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+SessionExpireAlert(3600000);//]]>
+</script>
+<script type='text/javascript'>new Sys.WebForms.Menu({ element: 'ctl00_mainMenu', disappearAfter: 500, orientation: 'horizontal', tabIndex: 0, disabled: false });</script>
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"modalBackground","CancelControlID":"ctl00_btnNo","OkControlID":"ctl00_btnYes","OnOkScript":"ResetSession()","PopupControlID":"ctl00_pnlPopup","dynamicServicePath":"/home.aspx","id":"mpeTimeout"}, null, null, $get("ctl00_lnkFake"));
+});
+//]]>
+</script>
+</form>
+
+
+
+
+    
+  
+
+    <script type="text/javascript">
+        $(document).on('shown.bs.dropdown', function () {
+            OffsetDropdown()
+            $(window).on('resize.bs.dropdown', function () {
+                OffsetDropdown()
+            })
+        })
+        $(document).on('hide.bs.dropdown', function () {
+            $(window).off('resize.bs.dropdown')
+        })
+        var OffsetDropdown = function () {
+            var dropdown = $('.open>.dropdown-menu')
+            if (dropdown.length == 0)
+                return
+            var rightOffset = dropdown.offset().left + dropdown.width()
+            var browserWidth = $('body').innerWidth()
+            var neededLeftOffset = dropdown.position().left - (rightOffset - browserWidth)
+            if (neededLeftOffset < 0) {
+                dropdown.css({ left: neededLeftOffset - 3 })
+            } else {
+                dropdown.css({ left: 0 })
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function myJS(myVar) {
+            window.alert(myVar);
+        }
+    </script>
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a:not(.popout).dynamic').parent('li').css({ 'display': 'flex' });
+            $('a:not(.popout).dynamic').parent('li').append('<i class="fa fa-star"></i>');
+
+            var UA_No = '1195';
+                     //-------------------------------------------------------------------
+                     $.ajax({
+                         url: '/WEB_API/Add_Fav_Links.asmx/Get_Active_FavLink',
+                        data: { UA_NO: UA_No },
+                        type: 'POST',
+                        dataType: 'text',
+                        success: function (r) {
+                            var json = "{" + r.split("{")[1].split("}")[0] + "}";
+                            var obj = jQuery.parseJSON(json);
+                            var i, j;
+                            for (i = 0; i < obj.data.split(",").length; i++) {
+
+                                $('li.dynamic').find('.fa').each(function (z, objz) {
+                                    var link = $(this).prev().attr('href');
+
+                                    var LinkNo = link.match("pageno=(.*)&");
+                                    if (LinkNo == null) {
+                                        LinkNo = link.substring(link.lastIndexOf("=") + 1, link.length);
+                                    }
+                                    else {
+                                        LinkNo = LinkNo[1];
+                                    }
+
+                                    if (obj.data.split(",")[i] == LinkNo) {
+                                        $(this).addClass('active');
+                                    }
+                                });
+                            }
+                        },
+                        error: function (e) {
+                            alert('Something went Wrong !!!');
+                        }
+                    });
+                     //----------------------------------------------------------------------
+
+                     $('li.dynamic').find('.fa').click(function () {
+                         debugger;
+                         $(this).toggleClass('active');
+                         var link = $(this).prev().attr('href');
+
+                         var LinkNo = link.match("pageno=(.*)&");
+                         if (LinkNo == null) {
+                             LinkNo = link.substring(link.lastIndexOf("=") + 1, link.length);
+                         }
+                         else {
+                             LinkNo = LinkNo[1];
+                         }
+                         var col = $(this).css("color");
+                         var color = '';
+                         //Find Color of Active Element
+                         hexc(col);
+                         //Web Api Call
+                         //if (color == '#ba68c8') {
+                         if (color == '#ff4d4d') {
+                             $.ajax({
+                                 url: '/WEB_API/Add_Fav_Links.asmx/Add_FavLink',
+                                data: { UA_NO: UA_No, LINK_NO: LinkNo, OTYPE: 1 },
+                                type: 'POST',
+                                dataType: 'text',
+                                success: function (r) {
+                                    var json = "{" + r.split("{")[1].split("}")[0] + "}";
+                                    var obj = jQuery.parseJSON(json);
+                                },
+                                error: function (err) {
+                                    alert('Something went Wrong !!!');
+                                }
+                            });
+                        }
+                        else if (color == '#a6a6a6') {
+                            $.ajax({
+                                url: '/WEB_API/Add_Fav_Links.asmx/Add_FavLink',
+                                data: { UA_NO: UA_No, LINK_NO: LinkNo, OTYPE: 2 },
+                                type: 'POST',
+                                dataType: 'text',
+                                success: function (r) {
+                                    var json = "{" + r.split("{")[1].split("}")[0] + "}";
+                                    var obj = jQuery.parseJSON(json);
+                                },
+                                error: function (err) {
+                                    alert('Something went Wrong !!!');
+                                }
+                            });
+                            }
+                        // RGB to HEX Converter
+                        function hexc(colorval) {
+                            var parts = colorval.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                            delete (parts[0]);
+                            for (var i = 1; i <= 3; ++i) {
+                                parts[i] = parseInt(parts[i]).toString(16);
+                                if (parts[i].length == 1) parts[i] = '0' + parts[i];
+                            }
+                            color = '#' + parts.join('');
+                        }
+                        //end
+                    });
+                 });
+    </script>
+
+    
+    
+
+    <script>
+        $(document).ready(function () {
+            $("#Fav_Model").click(function () {
+
+                var UA_No = '1195';
+
+                         $.ajax({
+                             url: '/WEB_API/Add_Fav_Links.asmx/Get_FavLink',
+                            data: { UA_NO: UA_No },
+                            type: 'POST',
+                            dataType: 'text',
+                            success: function (r) {
+                                if ($("#DynamicDiv").length != 0) {
+                                    $("#DynamicDiv").remove();
+                                }
+
+                                var json = "{" + r.split("{")[1].split("}")[0] + "}";
+                                var obj = jQuery.parseJSON(json);
+                                var x = "<div id='DynamicDiv'>" + obj.data + "</div>";
+                                x = x.replace(/&lt;/g, "<");
+                                x = x.replace(/&gt;/g, ">");
+                                x = x.replace(/&amp;/g, "&")
+
+                                if (x == "<div id='DynamicDiv'><ul class='list-group live-search'></div>") {
+                                    $('#ctl00_divFavorite').html('<span><center><h3 style="font-family: ptsans, sans-serif;margin-top: 50%;color:#3498DB"><i class="fa fa-star-half-o" aria-hidden="true"></i><br>No Favorite Links Added !!</h1></center></span>');
+                                }
+                                else {
+                                    $('#ctl00_divFavorite').html(x);
+                                }
+                            },
+                            error: function (e) {
+                                alert('No Favorite Link Added !!!');
+                            }
+                        });
+
+                         $('#myModal_1').modal('toggle');
+                     });
+                 });
+    </script>
+
+    
+    
+
+    <script>
+
+        function DeleteFavLinks(ele) {
+            debugger;
+            var UA_No = '1195';
+                     var link = $(ele).prev().attr("href");
+
+                     var LinkNo = link.match("pageno=(.*)&");
+                     if (LinkNo == null) {
+                         LinkNo = link.substring(link.lastIndexOf("=") + 1, link.length);
+                     }
+                     else {
+                         LinkNo = LinkNo[1];
+                     }
+                     //Remove Star from Links
+                     $('li.dynamic').find('.fa').each(function (z, objz) {
+                         var link_d = $(this).prev().attr('href');
+
+                         var LinkNo_d = link_d.match("pageno=(.*)&");
+                         if (LinkNo_d == null) {
+                             LinkNo_d = link_d.substring(link_d.lastIndexOf("=") + 1, link_d.length);
+                         }
+                         else {
+                             LinkNo_d = LinkNo_d[1];
+                         }
+                         //Compairing Page No's
+                         if (LinkNo_d == LinkNo) {
+                             $(this).removeClass('active');
+                         }
+                     });
+                     //End
+
+                     //Delete Links
+                     $.ajax({
+                         url: '/WEB_API/Add_Fav_Links.asmx/Add_FavLink',
+                        data: { UA_NO: UA_No, LINK_NO: LinkNo, OTYPE: 2 },
+                        type: 'POST',
+                        dataType: 'text',
+                        success: function (r) {
+                            var json = "{" + r.split("{")[1].split("}")[0] + "}";
+                            var obj = jQuery.parseJSON(json);
+                        },
+                        error: function (err) {
+                            alert('Something went Wrong !!!');
+                        }
+                    });
+                     //End
+
+                     //Get Links
+                    var UL_Length = $(ele).closest('ul').children().length;
+                    if (UL_Length == 1) {
+                        $(ele).closest('ul').prev().closest('li').remove();
+                        $(ele).closest('ul').prev().remove();
+                        if ($('#DynamicDiv ul').length == 1) {
+                            $('#ctl00_divFavorite').html('<span><center><h3 style="font-family: ptsans, sans-serif;margin-top: 50%;color:#3498DB"><i class="fa fa-star-half-o" aria-hidden="true"></i><br>No Favorite Links Added !!</h1></center></span>');
+                        }
+                    }
+                    else {
+                        $(ele).parent().remove();
+                    }
+                     //End
+                }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("ul.level1 > li").mouseover(function () {
+                $('select:focus').blur();
+                $('.ms-options-wrap').removeClass("ms-active");
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var script = document.createElement('script')
+            script.setAttribute("type", "text/javascript")
+
+            document.getElementsByTagName("body")[0].appendChild(script);
+            $('nav ul.navbar-nav li').each(function () {
+                $(this).find('.popout').append('<span class="caret"></span>');
+                $(this).find('ul .popout span').addClass("arrow-right");
+                var $arrow = $(this).find('.popout span:nth-of-type(n+2)');
+                $($arrow).hide();
+            });
+        });
+
+    </script>
+    
+
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.breadcrumb-menu').find('ul').addClass('breadcrumb');
+            $('.breadcrumb-menu').find('li').addClass('element');
+            $('.breadcrumb-menu').find('li:eq(0)').removeClass('element').css({ 'color': 'blue !important' });
+            $('.element').text(function (_, txt) {
+                return txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase();
+            });
+        });
+    </script>
+
+    
+</body>
+</html>

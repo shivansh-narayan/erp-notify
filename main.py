@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import solve_captcha
+import constants
 
 def download_captcha(soup):
     img = soup.findAll('img')
@@ -11,6 +12,31 @@ def download_captcha(soup):
     image = open('image.jpg', 'wb')
     image.write(downlaod_image)
 
+def update_captcha():
+    captcha_text= solve_captcha.getCaptcha()
+    constants.payload['txtcaptcha']=captcha_text
+    print('The captcha is '+captcha_text)
+
+def updateViewState(soup):
+    view=soup.find('input',{'id':'__VIEWSTATE'})
+    value=view.get('value')
+    constants.payload['__VIEWSTATE']=value
+def login(session):
+    
+    post=session.post('https://erp.bitmesra.ac.in/iitmsv4eGq0RuNHb0G5WbhLmTKLmTO7YBcJ4RHuXxCNPvuIw=?enc=EGbCGWnlHNJ/WdgJnKH8DA==',data=constants.payload,headers=constants.header)
+    
+    soup = BeautifulSoup(post.content,'html.parser')
+    html = open('afterlogin.html','wb')
+    html.write(post.content)
+    #print(soup.prettify)
+    print(constants.payload)
+
+def getCompleteDetails(session):
+    data=session.get('https://erp.bitmesra.ac.in/Academic/iitmsPFkXjz+EbtRodaXHXaPVt3dlW3oTGB+3i1YZ7alodHeRzGm9eTr2C53AU6tMBXuOAm5RgR4bqtOVgfGG9isuhw==?enc=3Q2Y1k5BriJsFcxTY7ebQh0hExMANhAKSl1CmxvOF+Y=',data=constants.paylaod,headers=constants.header)
+    soup = BeautifulSoup(data.content,'html.parser')
+    html = open('afterlogin.html','wb')
+    html.write(data.content)
+    print(soup.prettify)
 
 session = requests.Session()
 login_url = 'https://erp.bitmesra.ac.in/iitmsv4eGq0RuNHb0G5WbhLmTKLmTO7YBcJ4RHuXxCNPvuIw=?enc=EGbCGWnlHNJ/WdgJnKH8DA=='
@@ -19,7 +45,9 @@ s = session.get(login_url)
 #print(s.content)
 soup = BeautifulSoup(s.content,'html.parser')
 download_captcha(soup)
-captcha_text= solve_captcha.getCaptcha()
-
-print(captcha_text)
+update_captcha()
+updateViewState(soup)
+#print(constants.payload)
+login(session)
+#getCompleteDetails(session)
 #print(soup.prettify)
