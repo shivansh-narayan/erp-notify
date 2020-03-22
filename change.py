@@ -10,6 +10,12 @@ def checkMarksChange(studDetailPage):
 
     prev_marks_string = prev_marks.read()
     
+    current = open('current.html','w')
+    current.write(table)
+    current.close()
+    current= open('current.html','r')
+    table = current.read()
+    
     if(table==prev_marks_string):
         print('No change in marks')
     else :
@@ -27,7 +33,13 @@ def checkAttendaceChange(studDetailPage):
 
     parent_div = (soup.find('div',{'id':'div3'}))
     #print(parent_div)
-    table = str(parent_div.find('table',{'class':'table table-hover table-bordered'}))
+    table = str(parent_div).replace('\n','')
+
+    current = open('current.html','w')
+    current.write(table)
+    current.close()
+    current= open('current.html','r')
+    table = current.read()
     #print(table.prettify)
     prev_marks= open('prev_attd.html','r')
 
@@ -43,3 +55,4 @@ def checkAttendaceChange(studDetailPage):
         return True
 
     return False
+    

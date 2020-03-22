@@ -4,7 +4,7 @@ import solve_captcha
 import constants
 import change
 import send
-def download_captcha(soup):
+def download_captcha(soup,session):
     img = soup.findAll('img')
     div = soup.find('div',{'class':'col-sm-5 col-xs-5'})
     img = div.find('img')
@@ -48,7 +48,7 @@ def getCompleteDetails(session):
     return data
 
 
-if __name__ == "__main__":
+def start():
 
     count = 0
     while True :
@@ -58,7 +58,7 @@ if __name__ == "__main__":
         s = session.get(login_url)
         #print(s.content)
         soup = BeautifulSoup(s.content,'html.parser')
-        download_captcha(soup)
+        download_captcha(soup,session)
         update_captcha()
         updateViewState(soup)
         #print(constants.payload)
@@ -70,12 +70,17 @@ if __name__ == "__main__":
             t2=change.checkAttendaceChange( stude_details.content)
             if(t1 or t2):
                 send.sendIt()
+                return 'There was change in erp'
             break
 
         if(count==15):
-            print('No valid response in 15 tries !!')
+            return ('No valid response in 15 tries !!')
             break
         
         #print(soup.prettify)
         count=count+1
-        
+
+    return 'there was no change in erp'
+
+if __name__ == "__main__":
+    start()
